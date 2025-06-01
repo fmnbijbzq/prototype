@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作业详情 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 240px;
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            background-color: #2d3748;
+        }
+        .nav-item.active {
+            background-color: #2b6cb0;
+        }
+        .nav-item i {
+            width: 24px;
+            margin-right: 10px;
+        }
+        .question-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            background-color: white;
+        }
+        .question-header {
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+        .question-body {
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <div class="sidebar">
+        <div class="p-4 border-b border-gray-700">
+            <h1 class="text-xl font-bold">在线作业系统</h1>
+            <p class="text-sm text-gray-400">学生端</p>
+        </div>
+        <div class="mt-4">
+            <a href="student-dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i> 首页
+            </a>
+            <a href="student-assignments.html" class="nav-item active">
+                <i class="fas fa-book"></i> 我的作业
+            </a>
+            <a href="student-grades.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i> 我的成绩
+            </a>
+            <a href="student-discussion.html" class="nav-item">
+                <i class="fas fa-comments"></i> 讨论区
+            </a>
+            <a href="student-profile.html" class="nav-item">
+                <i class="fas fa-user"></i> 个人信息
+            </a>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                <div>
+                    <p class="font-medium">张三</p>
+                    <p class="text-sm text-gray-400">计算机2101班</p>
+                </div>
+            </div>
+            <button class="mt-2 w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded text-sm">
+                退出登录
+            </button>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <!-- 顶部栏 -->
+        <div class="flex justify-between items-center mb-6">
+            <div class="flex items-center">
+                <a href="student-assignments.html" class="text-gray-500 mr-2">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h1 class="text-2xl font-bold">高等数学作业</h1>
+            </div>
+            <div class="flex items-center">
+                <div class="relative mr-4">
+                    <i class="fas fa-bell text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-envelope text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作业信息卡片 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h2 class="text-xl font-semibold">高等数学作业</h2>
+                    <p class="text-gray-600 text-sm">王老师 · 高等数学</p>
+                </div>
+                <span class="bg-red-100 text-red-800 text-sm px-3 py-1 rounded-full">今日截止</span>
+            </div>
+            <div class="flex items-center text-sm text-gray-500 mb-4">
+                <div class="mr-6">
+                    <i class="fas fa-calendar-alt mr-2"></i> 发布时间：11月13日
+                </div>
+                <div class="mr-6">
+                    <i class="fas fa-clock mr-2"></i> 截止时间：11月15日 23:59
+                </div>
+                <div class="mr-6">
+                    <i class="fas fa-list-ol mr-2"></i> 10道题目
+                </div>
+                <div>
+                    <i class="fas fa-paperclip mr-2"></i> 1个附件
+                </div>
+            </div>
+            <div class="bg-gray-50 p-4 rounded-lg mb-4">
+                <h3 class="font-medium mb-2">作业说明</h3>
+                <p class="text-gray-600">
+                    本次作业涵盖高等数学第三章微分学的内容，包括导数的计算、微分应用和函数极值的求解。请认真完成所有题目，并按要求提交。如有疑问可在讨论区提问或直接联系老师。
+                </p>
+            </div>
+            <div class="flex items-center">
+                <a href="#" class="flex items-center bg-gray-100 hover:bg-gray-200 text-gray-700 px-4 py-2 rounded-md mr-4">
+                    <i class="fas fa-download mr-2"></i> 下载附件：高数第三章习题.pdf
+                </a>
+                <a href="#" class="text-blue-500 hover:text-blue-700">
+                    <i class="fas fa-comments mr-1"></i> 前往讨论区提问
+                </a>
+            </div>
+        </div>
+
+        <!-- 作业题目列表 -->
+        <div class="mb-6">
+            <h2 class="text-xl font-semibold mb-4">题目列表</h2>
+            
+            <!-- 选择题 -->
+            <div class="question-card">
+                <div class="question-header flex justify-between items-center">
+                    <h3 class="font-medium">题目 1：选择题</h3>
+                    <span class="text-sm text-gray-500">10分</span>
+                </div>
+                <div class="question-body">
+                    <p class="mb-4">若函数 f(x) = x² - 2x + 1 在点 x = 1 处的导数值为：</p>
+                    <div class="space-y-2 mb-4">
+                        <label class="flex items-center">
+                            <input type="radio" name="q1" class="mr-2">
+                            <span>A. -1</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q1" class="mr-2">
+                            <span>B. 0</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q1" class="mr-2">
+                            <span>C. 1</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q1" class="mr-2">
+                            <span>D. 2</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 填空题 -->
+            <div class="question-card">
+                <div class="question-header flex justify-between items-center">
+                    <h3 class="font-medium">题目 2：填空题</h3>
+                    <span class="text-sm text-gray-500">10分</span>
+                </div>
+                <div class="question-body">
+                    <p class="mb-4">计算 sin(π/4) 的值为 <input type="text" class="border rounded px-2 py-1 w-24"> 。</p>
+                </div>
+            </div>
+            
+            <!-- 判断题 -->
+            <div class="question-card">
+                <div class="question-header flex justify-between items-center">
+                    <h3 class="font-medium">题目 3：判断题</h3>
+                    <span class="text-sm text-gray-500">10分</span>
+                </div>
+                <div class="question-body">
+                    <p class="mb-4">若函数在某点处可导，则该函数在该点一定连续。</p>
+                    <div class="flex space-x-4">
+                        <label class="flex items-center">
+                            <input type="radio" name="q3" class="mr-2">
+                            <span>正确</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="radio" name="q3" class="mr-2">
+                            <span>错误</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 简答题 -->
+            <div class="question-card">
+                <div class="question-header flex justify-between items-center">
+                    <h3 class="font-medium">题目 4：简答题</h3>
+                    <span class="text-sm text-gray-500">20分</span>
+                </div>
+                <div class="question-body">
+                    <p class="mb-4">请证明：若函数 f(x) 在区间 [a, b] 上连续，在 (a, b) 内可导，且 f(a) = f(b)，则至少存在一点 ξ ∈ (a, b)，使得 f'(ξ) = 0。</p>
+                    <textarea class="w-full border rounded-md p-3 h-32" placeholder="请在此输入您的答案..."></textarea>
+                </div>
+            </div>
+            
+            <!-- 简答题 -->
+            <div class="question-card">
+                <div class="question-header flex justify-between items-center">
+                    <h3 class="font-medium">题目 5：简答题</h3>
+                    <span class="text-sm text-gray-500">20分</span>
+                </div>
+                <div class="question-body">
+                    <p class="mb-4">求函数 f(x) = x³ - 3x² + 2 在区间 [0, 3] 上的最大值和最小值。</p>
+                    <textarea class="w-full border rounded-md p-3 h-32" placeholder="请在此输入您的答案..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部操作按钮 -->
+        <div class="flex justify-between items-center bg-white rounded-lg shadow-md p-4">
+            <div class="text-gray-500">
+                <i class="fas fa-clock mr-1"></i> 距离截止还有：<span class="text-red-500 font-medium">8小时30分钟</span>
+            </div>
+            <div class="flex space-x-4">
+                <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-md">
+                    保存草稿
+                </button>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md">
+                    提交作业
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>批改作业 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 240px;
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            background-color: #2d3748;
+        }
+        .nav-item.active {
+            background-color: #2b6cb0;
+        }
+        .nav-item i {
+            width: 24px;
+            margin-right: 10px;
+        }
+        .tab-active {
+            color: #3182ce;
+            border-bottom: 2px solid #3182ce;
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <div class="sidebar">
+        <div class="p-4 border-b border-gray-700">
+            <h1 class="text-xl font-bold">在线作业系统</h1>
+            <p class="text-sm text-gray-400">教师端</p>
+        </div>
+        <div class="mt-4">
+            <a href="teacher-dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i> 首页
+            </a>
+            <a href="teacher-assignments.html" class="nav-item">
+                <i class="fas fa-book"></i> 我的作业
+            </a>
+            <a href="teacher-grading.html" class="nav-item active">
+                <i class="fas fa-check-square"></i> 批改作业
+            </a>
+            <a href="teacher-stats.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i> 统计分析
+            </a>
+            <a href="teacher-discussion.html" class="nav-item">
+                <i class="fas fa-comments"></i> 讨论区
+            </a>
+            <a href="teacher-profile.html" class="nav-item">
+                <i class="fas fa-user"></i> 个人信息
+            </a>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                <div>
+                    <p class="font-medium">王老师</p>
+                    <p class="text-sm text-gray-400">数学系</p>
+                </div>
+            </div>
+            <button class="mt-2 w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded text-sm">
+                退出登录
+            </button>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <!-- 顶部栏 -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">批改作业</h1>
+            <div class="flex items-center">
+                <div class="relative mr-4">
+                    <i class="fas fa-bell text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-envelope text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 标签页导航 -->
+        <div class="bg-white rounded-lg shadow-md mb-6">
+            <div class="flex border-b">
+                <button class="flex-1 py-4 text-center tab-active font-medium">待批改</button>
+                <button class="flex-1 py-4 text-center text-gray-500 font-medium">已批改</button>
+                <button class="flex-1 py-4 text-center text-gray-500 font-medium">未提交</button>
+            </div>
+        </div>
+
+        <!-- 作业选择和批改进度 -->
+        <div class="grid grid-cols-3 gap-6 mb-6">
+            <!-- 作业选择 -->
+            <div class="col-span-2 bg-white rounded-lg shadow-md p-6">
+                <label for="assignment" class="block text-sm font-medium text-gray-700 mb-2">选择作业</label>
+                <select id="assignment" class="w-full p-2 border rounded-lg">
+                    <option>高等数学作业（截止日期：11月15日）</option>
+                    <option>线性代数作业（截止日期：11月10日）</option>
+                    <option>程序设计作业（截止日期：11月20日）</option>
+                </select>
+            </div>
+
+            <!-- 批改进度 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-lg font-semibold mb-2">批改进度</h2>
+                <div class="flex items-center mb-2">
+                    <div class="w-full bg-gray-200 rounded-full h-2.5 mr-2">
+                        <div class="bg-blue-600 h-2.5 rounded-full" style="width: 40%"></div>
+                    </div>
+                    <span class="text-sm whitespace-nowrap">6/15</span>
+                </div>
+                <div class="flex justify-between text-sm text-gray-500">
+                    <span>已批改: 6人</span>
+                    <span>待批改: 9人</span>
+                    <span>未提交: 15人</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 学生提交列表和批改操作 -->
+        <div class="grid grid-cols-3 gap-6">
+            <!-- 学生提交列表 -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold">待批改列表</h2>
+                    <div class="relative">
+                        <input type="text" placeholder="搜索学生..." class="p-1 pl-8 text-sm border rounded">
+                        <i class="fas fa-search absolute left-2 top-2 text-gray-400 text-sm"></i>
+                    </div>
+                </div>
+                
+                <div class="space-y-3 max-h-[500px] overflow-y-auto">
+                    <!-- 学生提交项 - 当前选中 -->
+                    <div class="flex items-center p-3 border rounded-lg bg-blue-50 border-blue-300">
+                        <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium">张三</h3>
+                                <span class="text-xs text-gray-500">11月14日 20:30提交</span>
+                            </div>
+                            <p class="text-sm text-gray-500">计算机2101班 · 学号: 2021010101</p>
+                        </div>
+                    </div>
+
+                    <!-- 学生提交项 -->
+                    <div class="flex items-center p-3 border rounded-lg hover:bg-gray-50">
+                        <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium">李四</h3>
+                                <span class="text-xs text-gray-500">11月14日 19:45提交</span>
+                            </div>
+                            <p class="text-sm text-gray-500">计算机2101班 · 学号: 2021010102</p>
+                        </div>
+                    </div>
+
+                    <!-- 学生提交项 -->
+                    <div class="flex items-center p-3 border rounded-lg hover:bg-gray-50">
+                        <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium">王五</h3>
+                                <span class="text-xs text-gray-500">11月14日 18:20提交</span>
+                            </div>
+                            <p class="text-sm text-gray-500">计算机2101班 · 学号: 2021010103</p>
+                        </div>
+                    </div>
+
+                    <!-- 学生提交项 -->
+                    <div class="flex items-center p-3 border rounded-lg hover:bg-gray-50">
+                        <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium">赵六</h3>
+                                <span class="text-xs text-gray-500">11月14日 16:10提交</span>
+                            </div>
+                            <p class="text-sm text-gray-500">计算机2101班 · 学号: 2021010104</p>
+                        </div>
+                    </div>
+
+                    <!-- 学生提交项 -->
+                    <div class="flex items-center p-3 border rounded-lg hover:bg-gray-50">
+                        <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium">孙七</h3>
+                                <span class="text-xs text-gray-500">11月14日 15:30提交</span>
+                            </div>
+                            <p class="text-sm text-gray-500">计算机2101班 · 学号: 2021010105</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 分页 -->
+                <div class="flex justify-center mt-4">
+                    <nav class="inline-flex rounded-md shadow">
+                        <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium rounded-l-md text-gray-700 hover:bg-gray-50">
+                            上一页
+                        </a>
+                        <a href="#" class="py-2 px-4 bg-blue-50 border border-blue-500 text-sm font-medium text-blue-600">
+                            1
+                        </a>
+                        <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            2
+                        </a>
+                        <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-sm font-medium rounded-r-md text-gray-700 hover:bg-gray-50">
+                            下一页
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- 批改区域 -->
+            <div class="col-span-2">
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h2 class="text-lg font-semibold">张三的作业</h2>
+                            <p class="text-sm text-gray-500">提交时间：2023-11-14 20:30</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-md text-sm">
+                                <i class="fas fa-download mr-1"></i> 下载
+                            </button>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm">
+                                <i class="fas fa-comment mr-1"></i> 留言
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 题目1批改 -->
+                    <div class="border rounded-lg mb-4">
+                        <div class="bg-gray-50 p-3 border-b">
+                            <h3 class="font-medium">题目1：选择题（10分）</h3>
+                        </div>
+                        <div class="p-4">
+                            <p class="mb-3">若函数 f(x) = x² - 2x + 1 在点 x = 1 处的导数值为：</p>
+                            <div class="mb-4">
+                                <div class="flex items-center mb-1">
+                                    <span class="w-6">A.</span>
+                                    <span>-1</span>
+                                </div>
+                                <div class="flex items-center mb-1">
+                                    <span class="w-6">B.</span>
+                                    <span>0 <span class="ml-2 text-green-500">(学生选择)</span></span>
+                                </div>
+                                <div class="flex items-center mb-1">
+                                    <span class="w-6">C.</span>
+                                    <span>1</span>
+                                </div>
+                                <div class="flex items-center mb-1">
+                                    <span class="w-6">D.</span>
+                                    <span>2</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-sm text-gray-500">正确答案：B</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="mr-2">得分：</span>
+                                    <input type="number" class="border rounded w-16 p-1 text-center" value="10"> / 10
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 题目2批改 -->
+                    <div class="border rounded-lg mb-4">
+                        <div class="bg-gray-50 p-3 border-b">
+                            <h3 class="font-medium">题目2：填空题（10分）</h3>
+                        </div>
+                        <div class="p-4">
+                            <p class="mb-3">计算 sin(π/4) 的值为 <span class="font-medium">0.7071</span> 。</p>
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <span class="text-sm text-gray-500">正确答案：0.7071（或√2/2）</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <span class="mr-2">得分：</span>
+                                    <input type="number" class="border rounded w-16 p-1 text-center" value="10"> / 10
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 题目3批改 -->
+                    <div class="border rounded-lg mb-4">
+                        <div class="bg-gray-50 p-3 border-b">
+                            <h3 class="font-medium">题目3：简答题（20分）</h3>
+                        </div>
+                        <div class="p-4">
+                            <p class="mb-3">求函数 f(x) = x³ - 3x² + 2 在区间 [0, 3] 上的最大值和最小值。</p>
+                            <div class="border p-3 mb-3 bg-gray-50 rounded">
+                                <p class="text-sm">学生答案：</p>
+                                <p>首先求导数：f'(x) = 3x² - 6x</p>
+                                <p>令f'(x) = 0，得到 3x(x - 2) = 0</p>
+                                <p>所以 x = 0 或 x = 2 是临界点</p>
+                                <p>计算各点的函数值：</p>
+                                <p>f(0) = 2</p>
+                                <p>f(2) = 8 - 12 + 2 = -2</p>
+                                <p>f(3) = 27 - 27 + 2 = 2</p>
+                                <p>所以最大值是2，最小值是-2</p>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <div class="flex-1">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">评语</label>
+                                    <textarea class="w-full border rounded-md p-2 text-sm" rows="2" placeholder="请输入评语...">解题思路正确，计算准确，但缺少对临界点的二阶导数判别。</textarea>
+                                </div>
+                                <div class="flex items-center ml-4">
+                                    <span class="mr-2">得分：</span>
+                                    <input type="number" class="border rounded w-16 p-1 text-center" value="18"> / 20
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 总分和提交 -->
+                    <div class="flex justify-between items-center p-4 bg-gray-50 rounded-lg">
+                        <div class="text-lg">
+                            总分：<span class="font-bold text-blue-600">38</span> / 40
+                        </div>
+                        <div class="flex space-x-3">
+                            <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-md">
+                                保存
+                            </button>
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">
+                                提交并批改下一份
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 批量操作 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mt-6">
+            <h2 class="text-lg font-semibold mb-3">批量操作</h2>
+            <div class="flex space-x-4">
+                <button class="flex-1 bg-green-500 hover:bg-green-600 text-white py-2 rounded-md">
+                    发布成绩
+                </button>
+                <button class="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white py-2 rounded-md">
+                    提醒未交
+                </button>
+                <button class="flex-1 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-md">
+                    导出成绩
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

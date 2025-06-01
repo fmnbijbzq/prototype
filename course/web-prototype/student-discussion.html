@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讨论区 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 240px;
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            background-color: #2d3748;
+        }
+        .nav-item.active {
+            background-color: #2b6cb0;
+        }
+        .nav-item i {
+            width: 24px;
+            margin-right: 10px;
+        }
+        .tab-active {
+            color: #3182ce;
+            border-bottom: 2px solid #3182ce;
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <div class="sidebar">
+        <div class="p-4 border-b border-gray-700">
+            <h1 class="text-xl font-bold">在线作业系统</h1>
+            <p class="text-sm text-gray-400">学生端</p>
+        </div>
+        <div class="mt-4">
+            <a href="student-dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i> 首页
+            </a>
+            <a href="student-assignments.html" class="nav-item">
+                <i class="fas fa-book"></i> 我的作业
+            </a>
+            <a href="student-grades.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i> 我的成绩
+            </a>
+            <a href="student-discussion.html" class="nav-item active">
+                <i class="fas fa-comments"></i> 讨论区
+            </a>
+            <a href="student-profile.html" class="nav-item">
+                <i class="fas fa-user"></i> 个人信息
+            </a>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                <div>
+                    <p class="font-medium">张三</p>
+                    <p class="text-sm text-gray-400">计算机2101班</p>
+                </div>
+            </div>
+            <button class="mt-2 w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded text-sm">
+                退出登录
+            </button>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <!-- 顶部栏 -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">讨论区</h1>
+            <div class="flex items-center">
+                <div class="relative mr-4">
+                    <i class="fas fa-bell text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-envelope text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 标签页导航 -->
+        <div class="bg-white rounded-lg shadow-md mb-6">
+            <div class="flex border-b">
+                <button class="flex-1 py-4 text-center tab-active font-medium">全部</button>
+                <button class="flex-1 py-4 text-center text-gray-500 font-medium">课程讨论</button>
+                <button class="flex-1 py-4 text-center text-gray-500 font-medium">作业问答</button>
+                <button class="flex-1 py-4 text-center text-gray-500 font-medium">我的</button>
+            </div>
+        </div>
+
+        <!-- 搜索和操作 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+            <div class="flex flex-wrap gap-4">
+                <div class="flex-1 relative">
+                    <input type="text" placeholder="搜索讨论..." class="w-full p-2 pl-10 border rounded-lg">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <select class="border rounded-lg p-2">
+                    <option>所有课程</option>
+                    <option>高等数学</option>
+                    <option>线性代数</option>
+                    <option>程序设计</option>
+                    <option>数据结构</option>
+                </select>
+                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg">
+                    <i class="fas fa-plus mr-2"></i> 发布新帖
+                </button>
+            </div>
+        </div>
+
+        <!-- 讨论列表 -->
+        <div class="space-y-4 mb-6">
+            <!-- 置顶讨论 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-blue-50 px-6 py-3 flex items-center">
+                    <span class="text-blue-600 text-sm font-medium mr-2">
+                        <i class="fas fa-thumbtack mr-1"></i> 置顶
+                    </span>
+                    <span class="text-sm text-gray-500">来自: 系统公告</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex">
+                        <img src="https://via.placeholder.com/48" alt="头像" class="rounded-full mr-4 h-12 w-12">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium">王老师</h3>
+                                <span class="text-sm text-gray-500">昨天 14:30</span>
+                            </div>
+                            <h2 class="text-xl font-semibold mt-2">关于期末考试范围的通知</h2>
+                            <p class="text-gray-600 mt-2">
+                                各位同学，期末考试将于12月20日进行，考试范围包括教材第1-8章的内容，重点是第3、5、7章。请大家认真复习，有问题可以在讨论区提问...
+                            </p>
+                            <div class="flex items-center mt-4 text-sm text-gray-500">
+                                <span class="mr-6"><i class="far fa-eye mr-1"></i> 128</span>
+                                <span class="mr-6"><i class="far fa-comment mr-1"></i> 23</span>
+                                <span><i class="far fa-thumbs-up mr-1"></i> 45</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 普通讨论 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6">
+                    <div class="flex">
+                        <img src="https://via.placeholder.com/48" alt="头像" class="rounded-full mr-4 h-12 w-12">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium">李四 <span class="text-sm text-gray-500">· 高等数学</span></h3>
+                                <span class="text-sm text-gray-500">2小时前</span>
+                            </div>
+                            <h2 class="text-xl font-semibold mt-2">关于高数第三章习题的疑问</h2>
+                            <p class="text-gray-600 mt-2">
+                                老师，我对第15题有些不理解，特别是关于极限的计算部分。能否详细解释一下这个题目的解题思路？我尝试了几种方法但都没有得到正确答案...
+                            </p>
+                            <div class="flex items-center mt-4 text-sm text-gray-500">
+                                <span class="mr-6"><i class="far fa-eye mr-1"></i> 56</span>
+                                <span class="mr-6"><i class="far fa-comment mr-1"></i> 3</span>
+                                <span><i class="far fa-thumbs-up mr-1"></i> 8</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 普通讨论 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6">
+                    <div class="flex">
+                        <img src="https://via.placeholder.com/48" alt="头像" class="rounded-full mr-4 h-12 w-12">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium">王老师 <span class="text-sm text-gray-500">· 程序设计</span></h3>
+                                <span class="text-sm text-gray-500">昨天</span>
+                            </div>
+                            <h2 class="text-xl font-semibold mt-2">程序设计课程项目分组</h2>
+                            <p class="text-gray-600 mt-2">
+                                请同学们在本周五前完成分组，每组3-5人，并将小组成员名单和初步的项目构想发送到我的邮箱。项目要求详见附件，有问题可以在讨论区提问...
+                            </p>
+                            <div class="flex items-center mt-4 text-sm text-gray-500">
+                                <span class="mr-6"><i class="far fa-eye mr-1"></i> 98</span>
+                                <span class="mr-6"><i class="far fa-comment mr-1"></i> 12</span>
+                                <span><i class="far fa-thumbs-up mr-1"></i> 32</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 普通讨论 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6">
+                    <div class="flex">
+                        <img src="https://via.placeholder.com/48" alt="头像" class="rounded-full mr-4 h-12 w-12">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium">赵六 <span class="text-sm text-gray-500">· 线性代数</span></h3>
+                                <span class="text-sm text-gray-500">2天前</span>
+                            </div>
+                            <h2 class="text-xl font-semibold mt-2">矩阵求逆的简便方法</h2>
+                            <p class="text-gray-600 mt-2">
+                                大家好，我发现了一个计算矩阵求逆的简便方法，特别适合在考试中使用，节省时间。方法如下：首先计算行列式，然后...
+                            </p>
+                            <div class="flex items-center mt-4 text-sm text-gray-500">
+                                <span class="mr-6"><i class="far fa-eye mr-1"></i> 76</span>
+                                <span class="mr-6"><i class="far fa-comment mr-1"></i> 8</span>
+                                <span><i class="far fa-thumbs-up mr-1"></i> 24</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 普通讨论 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6">
+                    <div class="flex">
+                        <img src="https://via.placeholder.com/48" alt="头像" class="rounded-full mr-4 h-12 w-12">
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <h3 class="font-medium">张三 <span class="text-sm text-gray-500">· 数据结构</span></h3>
+                                <span class="text-sm text-gray-500">3天前</span>
+                            </div>
+                            <h2 class="text-xl font-semibold mt-2">关于红黑树的实现问题</h2>
+                            <p class="text-gray-600 mt-2">
+                                在实现红黑树的删除操作时遇到了一些问题，特别是关于删除后的平衡调整。有没有同学能分享一下自己的实现思路或者有什么好的参考资料？
+                            </p>
+                            <div class="flex items-center mt-4 text-sm text-gray-500">
+                                <span class="mr-6"><i class="far fa-eye mr-1"></i> 65</span>
+                                <span class="mr-6"><i class="far fa-comment mr-1"></i> 7</span>
+                                <span><i class="far fa-thumbs-up mr-1"></i> 18</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分页 -->
+        <div class="flex justify-between items-center">
+            <div class="text-sm text-gray-500">
+                显示 1 到 5 条，共 28 条
+            </div>
+            <div class="flex">
+                <button class="px-3 py-1 border rounded-l-md bg-white text-gray-500">上一页</button>
+                <button class="px-3 py-1 border-t border-b bg-blue-50 text-blue-600 border-blue-500">1</button>
+                <button class="px-3 py-1 border-t border-b bg-white text-gray-500">2</button>
+                <button class="px-3 py-1 border-t border-b bg-white text-gray-500">3</button>
+                <button class="px-3 py-1 border-t border-b bg-white text-gray-500">...</button>
+                <button class="px-3 py-1 border-t border-b bg-white text-gray-500">6</button>
+                <button class="px-3 py-1 border rounded-r-md bg-white text-gray-500">下一页</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

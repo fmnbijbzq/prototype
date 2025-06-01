@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学生首页 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 240px;
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            background-color: #2d3748;
+        }
+        .nav-item.active {
+            background-color: #2b6cb0;
+        }
+        .nav-item i {
+            width: 24px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <div class="sidebar">
+        <div class="p-4 border-b border-gray-700">
+            <h1 class="text-xl font-bold">在线作业系统</h1>
+            <p class="text-sm text-gray-400">学生端</p>
+        </div>
+        <div class="mt-4">
+            <a href="student-dashboard.html" class="nav-item active">
+                <i class="fas fa-home"></i> 首页
+            </a>
+            <a href="student-assignments.html" class="nav-item">
+                <i class="fas fa-book"></i> 我的作业
+            </a>
+            <a href="student-grades.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i> 我的成绩
+            </a>
+            <a href="student-discussion.html" class="nav-item">
+                <i class="fas fa-comments"></i> 讨论区
+            </a>
+            <a href="student-profile.html" class="nav-item">
+                <i class="fas fa-user"></i> 个人信息
+            </a>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                <div>
+                    <p class="font-medium">张三</p>
+                    <p class="text-sm text-gray-400">计算机2101班</p>
+                </div>
+            </div>
+            <button class="mt-2 w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded text-sm">
+                退出登录
+            </button>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <!-- 顶部栏 -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">学生首页</h1>
+            <div class="flex items-center">
+                <div class="relative mr-4">
+                    <i class="fas fa-bell text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-envelope text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 欢迎卡片 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-semibold mb-2">欢迎回来，张三！</h2>
+                    <p class="text-gray-600">今天是2023年11月15日，星期三</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-500">本学期已完成作业</p>
+                    <p class="text-3xl font-bold text-blue-600">15/20</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="grid grid-cols-3 gap-6">
+            <!-- 左侧：待办事项 -->
+            <div class="col-span-2">
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-lg font-semibold mb-4">待办事项</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 bg-red-50 rounded-md border-l-4 border-red-500">
+                            <div class="flex-1">
+                                <h3 class="font-medium">高等数学作业</h3>
+                                <p class="text-sm text-gray-500">截止日期：今天 23:59</p>
+                            </div>
+                            <span class="text-red-500 text-sm font-bold">紧急</span>
+                        </div>
+                        
+                        <div class="flex items-center p-3 bg-yellow-50 rounded-md border-l-4 border-yellow-500">
+                            <div class="flex-1">
+                                <h3 class="font-medium">线性代数作业</h3>
+                                <p class="text-sm text-gray-500">截止日期：明天 23:59</p>
+                            </div>
+                            <span class="text-yellow-500 text-sm font-bold">即将截止</span>
+                        </div>
+                        
+                        <div class="flex items-center p-3 bg-gray-50 rounded-md border-l-4 border-gray-500">
+                            <div class="flex-1">
+                                <h3 class="font-medium">程序设计作业</h3>
+                                <p class="text-sm text-gray-500">截止日期：11月20日 23:59</p>
+                            </div>
+                            <span class="text-gray-500 text-sm">5天后截止</span>
+                        </div>
+                    </div>
+                    <a href="student-assignments.html" class="block text-center text-blue-500 mt-4">查看全部作业 →</a>
+                </div>
+
+                <!-- 最新讨论 -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-lg font-semibold mb-4">最新讨论</h2>
+                    <div class="space-y-4">
+                        <div class="p-3 border-b">
+                            <h3 class="font-medium">关于高数第三章习题的疑问</h3>
+                            <p class="text-sm text-gray-500">李四：老师，我对第15题有些不理解...</p>
+                            <p class="text-xs text-gray-400">2小时前 · 3条回复</p>
+                        </div>
+                        
+                        <div class="p-3 border-b">
+                            <h3 class="font-medium">程序设计课程项目分组</h3>
+                            <p class="text-sm text-gray-500">王老师：请同学们在本周五前完成分组...</p>
+                            <p class="text-xs text-gray-400">昨天 · 12条回复</p>
+                        </div>
+                        
+                        <div class="p-3">
+                            <h3 class="font-medium">关于期末考试范围的通知</h3>
+                            <p class="text-sm text-gray-500">王老师：各位同学，期末考试将于12月20日进行...</p>
+                            <p class="text-xs text-gray-400">2天前 · 25条回复</p>
+                        </div>
+                    </div>
+                    <a href="student-discussion.html" class="block text-center text-blue-500 mt-4">进入讨论区 →</a>
+                </div>
+            </div>
+
+            <!-- 右侧：最近成绩和日历 -->
+            <div class="col-span-1">
+                <!-- 最近成绩 -->
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <h2 class="text-lg font-semibold mb-4">最近成绩</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center p-2 bg-green-50 rounded-md">
+                            <div class="flex-1">
+                                <h3 class="font-medium">数据结构作业</h3>
+                                <p class="text-sm text-gray-500">提交日期：11月10日</p>
+                            </div>
+                            <span class="text-green-500 text-lg font-bold">95分</span>
+                        </div>
+                        
+                        <div class="flex items-center p-2 bg-green-50 rounded-md">
+                            <div class="flex-1">
+                                <h3 class="font-medium">计算机网络作业</h3>
+                                <p class="text-sm text-gray-500">提交日期：11月8日</p>
+                            </div>
+                            <span class="text-green-500 text-lg font-bold">88分</span>
+                        </div>
+                        
+                        <div class="flex items-center p-2 bg-green-50 rounded-md">
+                            <div class="flex-1">
+                                <h3 class="font-medium">高等数学作业</h3>
+                                <p class="text-sm text-gray-500">提交日期：11月5日</p>
+                            </div>
+                            <span class="text-green-500 text-lg font-bold">92分</span>
+                        </div>
+                    </div>
+                    <a href="student-grades.html" class="block text-center text-blue-500 mt-4">查看全部成绩 →</a>
+                </div>
+
+                <!-- 简易日历 -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-lg font-semibold mb-4">日历</h2>
+                    <div class="text-center mb-2">
+                        <h3 class="font-medium">2023年11月</h3>
+                    </div>
+                    <div class="grid grid-cols-7 gap-1 text-center text-sm">
+                        <div class="text-gray-500">日</div>
+                        <div class="text-gray-500">一</div>
+                        <div class="text-gray-500">二</div>
+                        <div class="text-gray-500">三</div>
+                        <div class="text-gray-500">四</div>
+                        <div class="text-gray-500">五</div>
+                        <div class="text-gray-500">六</div>
+                        
+                        <div class="text-gray-400">29</div>
+                        <div class="text-gray-400">30</div>
+                        <div class="text-gray-400">31</div>
+                        <div>1</div>
+                        <div>2</div>
+                        <div>3</div>
+                        <div>4</div>
+                        
+                        <div>5</div>
+                        <div>6</div>
+                        <div>7</div>
+                        <div>8</div>
+                        <div>9</div>
+                        <div>10</div>
+                        <div>11</div>
+                        
+                        <div>12</div>
+                        <div>13</div>
+                        <div>14</div>
+                        <div class="bg-blue-500 text-white rounded-full">15</div>
+                        <div class="bg-yellow-100">16</div>
+                        <div>17</div>
+                        <div>18</div>
+                        
+                        <div>19</div>
+                        <div class="bg-red-100">20</div>
+                        <div>21</div>
+                        <div>22</div>
+                        <div>23</div>
+                        <div>24</div>
+                        <div>25</div>
+                        
+                        <div>26</div>
+                        <div>27</div>
+                        <div>28</div>
+                        <div>29</div>
+                        <div>30</div>
+                        <div class="text-gray-400">1</div>
+                        <div class="text-gray-400">2</div>
+                    </div>
+                    <div class="mt-4 text-sm">
+                        <div class="flex items-center mb-1">
+                            <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                            <span>今天</span>
+                        </div>
+                        <div class="flex items-center mb-1">
+                            <div class="w-3 h-3 bg-yellow-100 rounded-full mr-2"></div>
+                            <span>有作业截止</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-red-100 rounded-full mr-2"></div>
+                            <span>有考试</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

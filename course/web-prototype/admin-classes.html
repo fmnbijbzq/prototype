@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>班级管理 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 240px;
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            background-color: #2d3748;
+        }
+        .nav-item.active {
+            background-color: #2b6cb0;
+        }
+        .nav-item i {
+            width: 24px;
+            margin-right: 10px;
+        }
+        .class-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s;
+        }
+        .class-card:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <div class="sidebar">
+        <div class="p-4 border-b border-gray-700">
+            <h1 class="text-xl font-bold">在线作业系统</h1>
+            <p class="text-sm text-gray-400">管理员端</p>
+        </div>
+        <div class="mt-4">
+            <a href="admin-dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i> 首页
+            </a>
+            <a href="admin-users.html" class="nav-item">
+                <i class="fas fa-users"></i> 用户管理
+            </a>
+            <a href="admin-classes.html" class="nav-item active">
+                <i class="fas fa-school"></i> 班级管理
+            </a>
+            <a href="admin-stats.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i> 统计分析
+            </a>
+            <a href="admin-discussion.html" class="nav-item">
+                <i class="fas fa-comments"></i> 讨论区管理
+            </a>
+            <a href="admin-profile.html" class="nav-item">
+                <i class="fas fa-user"></i> 个人信息
+            </a>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                <div>
+                    <p class="font-medium">系统管理员</p>
+                    <p class="text-sm text-gray-400">超级管理员</p>
+                </div>
+            </div>
+            <button class="mt-2 w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded text-sm">
+                退出登录
+            </button>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <!-- 顶部栏 -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">班级管理</h1>
+            <div class="flex items-center">
+                <div class="relative mr-4">
+                    <i class="fas fa-bell text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">5</span>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-envelope text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 操作栏 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex flex-wrap justify-between items-center">
+                <div class="flex space-x-4">
+                    <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center">
+                        <i class="fas fa-plus mr-2"></i> 创建班级
+                    </button>
+                    <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 flex items-center">
+                        <i class="fas fa-file-import mr-2"></i> 批量导入
+                    </button>
+                    <div class="relative">
+                        <select class="appearance-none bg-gray-100 border border-gray-300 text-gray-700 py-2 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <option>所有年级</option>
+                            <option>2023级</option>
+                            <option>2022级</option>
+                            <option>2021级</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <i class="fas fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative mt-4 sm:mt-0">
+                    <input type="text" placeholder="搜索班级..." class="pl-10 pr-4 py-2 border rounded-md w-64">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 班级卡片网格 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            <!-- 班级卡片 1 -->
+            <div class="class-card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold">2023级数学1班</h3>
+                        <p class="text-sm text-gray-500">班主任：王老师</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">学生人数</p>
+                            <p class="text-xl font-bold">30</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-book text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">课程数</p>
+                            <p class="text-xl font-bold">5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between">
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-eye mr-1"></i> 查看详情
+                        </button>
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-edit mr-1"></i> 编辑
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 班级卡片 2 -->
+            <div class="class-card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold">2023级数学2班</h3>
+                        <p class="text-sm text-gray-500">班主任：李老师</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">学生人数</p>
+                            <p class="text-xl font-bold">32</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-book text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">课程数</p>
+                            <p class="text-xl font-bold">5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between">
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-eye mr-1"></i> 查看详情
+                        </button>
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-edit mr-1"></i> 编辑
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 班级卡片 3 -->
+            <div class="class-card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold">2022级计算机科学班</h3>
+                        <p class="text-sm text-gray-500">班主任：赵老师</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">学生人数</p>
+                            <p class="text-xl font-bold">25</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-book text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">课程数</p>
+                            <p class="text-xl font-bold">6</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between">
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-eye mr-1"></i> 查看详情
+                        </button>
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-edit mr-1"></i> 编辑
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 班级卡片 4 -->
+            <div class="class-card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold">2022级物理班</h3>
+                        <p class="text-sm text-gray-500">班主任：钱老师</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">学生人数</p>
+                            <p class="text-xl font-bold">28</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-book text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">课程数</p>
+                            <p class="text-xl font-bold">5</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between">
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-eye mr-1"></i> 查看详情
+                        </button>
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-edit mr-1"></i> 编辑
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 班级卡片 5 -->
+            <div class="class-card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold">2021级化学班</h3>
+                        <p class="text-sm text-gray-500">班主任：孙老师</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">学生人数</p>
+                            <p class="text-xl font-bold">26</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-book text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">课程数</p>
+                            <p class="text-xl font-bold">4</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between">
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-eye mr-1"></i> 查看详情
+                        </button>
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-edit mr-1"></i> 编辑
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 班级卡片 6 -->
+            <div class="class-card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold">2021级生物班</h3>
+                        <p class="text-sm text-gray-500">班主任：周老师</p>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-blue-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">学生人数</p>
+                            <p class="text-xl font-bold">24</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-book text-green-600"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500">课程数</p>
+                            <p class="text-xl font-bold">4</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="border-t pt-4">
+                    <div class="flex justify-between">
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-eye mr-1"></i> 查看详情
+                        </button>
+                        <button class="text-blue-600 hover:text-blue-800 text-sm">
+                            <i class="fas fa-edit mr-1"></i> 编辑
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 分页 -->
+        <div class="flex justify-center mt-6 mb-6">
+            <nav class="inline-flex rounded-md shadow">
+                <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-gray-500 hover:bg-gray-50 rounded-l-md">上一页</a>
+                <a href="#" class="py-2 px-4 bg-blue-600 text-white border border-blue-600">1</a>
+                <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-gray-500 hover:bg-gray-50">2</a>
+                <a href="#" class="py-2 px-4 bg-white border border-gray-300 text-gray-500 hover:bg-gray-50 rounded-r-md">下一页</a>
+            </nav>
+        </div>
+        
+        <!-- 班级详情模态框（示意） -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-lg font-semibold mb-4">班级详情</h2>
+            <p class="text-gray-600 mb-4">点击"查看详情"按钮将打开班级详情页面，显示以下信息：</p>
+            <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                <li>班级基本信息（名称、年级、班主任等）</li>
+                <li>学生名单（可搜索、筛选、导出）</li>
+                <li>课程列表（该班级所有课程及任课教师）</li>
+                <li>作业统计（完成率、平均分等）</li>
+                <li>班级管理功能（添加/移除学生、更换班主任等）</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

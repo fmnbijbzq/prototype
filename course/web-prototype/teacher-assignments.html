@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的作业 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 240px;
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            background-color: #2d3748;
+        }
+        .nav-item.active {
+            background-color: #2b6cb0;
+        }
+        .nav-item i {
+            width: 24px;
+            margin-right: 10px;
+        }
+        .tab-active {
+            color: #3182ce;
+            border-bottom: 2px solid #3182ce;
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <div class="sidebar">
+        <div class="p-4 border-b border-gray-700">
+            <h1 class="text-xl font-bold">在线作业系统</h1>
+            <p class="text-sm text-gray-400">教师端</p>
+        </div>
+        <div class="mt-4">
+            <a href="teacher-dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i> 首页
+            </a>
+            <a href="teacher-assignments.html" class="nav-item active">
+                <i class="fas fa-book"></i> 我的作业
+            </a>
+            <a href="teacher-grading.html" class="nav-item">
+                <i class="fas fa-check-square"></i> 批改作业
+            </a>
+            <a href="teacher-stats.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i> 统计分析
+            </a>
+            <a href="teacher-discussion.html" class="nav-item">
+                <i class="fas fa-comments"></i> 讨论区
+            </a>
+            <a href="teacher-profile.html" class="nav-item">
+                <i class="fas fa-user"></i> 个人信息
+            </a>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                <div>
+                    <p class="font-medium">王老师</p>
+                    <p class="text-sm text-gray-400">数学系</p>
+                </div>
+            </div>
+            <button class="mt-2 w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded text-sm">
+                退出登录
+            </button>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <!-- 顶部栏 -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">我的作业</h1>
+            <div class="flex items-center">
+                <div class="relative mr-4">
+                    <i class="fas fa-bell text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-envelope text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 标签页导航 -->
+        <div class="bg-white rounded-lg shadow-md mb-6">
+            <div class="flex border-b">
+                <button class="flex-1 py-4 text-center tab-active font-medium">全部</button>
+                <button class="flex-1 py-4 text-center text-gray-500 font-medium">进行中</button>
+                <button class="flex-1 py-4 text-center text-gray-500 font-medium">已截止</button>
+                <button class="flex-1 py-4 text-center text-gray-500 font-medium">草稿</button>
+            </div>
+        </div>
+
+        <!-- 搜索和操作 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+            <div class="flex flex-wrap gap-4">
+                <div class="flex-1 relative">
+                    <input type="text" placeholder="搜索作业..." class="w-full p-2 pl-10 border rounded-lg">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                </div>
+                <select class="border rounded-lg p-2">
+                    <option>所有课程</option>
+                    <option>高等数学</option>
+                    <option>线性代数</option>
+                    <option>程序设计</option>
+                    <option>数据结构</option>
+                </select>
+                <select class="border rounded-lg p-2">
+                    <option>所有班级</option>
+                    <option>计算机2101班</option>
+                    <option>计算机2102班</option>
+                    <option>软件工程2101班</option>
+                </select>
+                <a href="teacher-create-assignment.html" class="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center">
+                    <i class="fas fa-plus mr-2"></i> 发布作业
+                </a>
+            </div>
+        </div>
+
+        <!-- 作业列表 -->
+        <div class="space-y-4 mb-6">
+            <!-- 进行中作业 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-green-100 px-6 py-3 flex justify-between items-center">
+                    <span class="font-medium text-green-600">进行中</span>
+                    <span class="text-sm text-green-600">今日截止</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h2 class="text-xl font-semibold">高等数学作业</h2>
+                            <p class="text-gray-600 text-sm">高等数学 · 计算机2101班</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm">
+                                查看
+                            </button>
+                            <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-md text-sm">
+                                编辑
+                            </button>
+                            <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm">
+                                删除
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <div class="mr-6">
+                            <i class="fas fa-calendar-alt mr-2"></i> 发布时间：11月13日
+                        </div>
+                        <div class="mr-6">
+                            <i class="fas fa-clock mr-2"></i> 截止时间：11月15日 23:59
+                        </div>
+                        <div class="mr-6">
+                            <i class="fas fa-list-ol mr-2"></i> 10道题目
+                        </div>
+                        <div>
+                            <i class="fas fa-paperclip mr-2"></i> 1个附件
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-gray-600">
+                            本次作业涵盖高等数学第三章微分学的内容，包括导数的计算、微分应用和函数极值的求解。请认真完成所有题目，并按要求提交。
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-32 bg-gray-200 rounded-full h-2.5 mr-2">
+                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 50%"></div>
+                            </div>
+                            <span class="text-sm text-gray-600">15/30人已提交</span>
+                        </div>
+                        <a href="teacher-grading.html" class="text-blue-500 hover:text-blue-700">
+                            前往批改 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 进行中作业 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-green-100 px-6 py-3 flex justify-between items-center">
+                    <span class="font-medium text-green-600">进行中</span>
+                    <span class="text-sm text-green-600">5天后截止</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h2 class="text-xl font-semibold">程序设计作业</h2>
+                            <p class="text-gray-600 text-sm">程序设计 · 计算机2101班</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm">
+                                查看
+                            </button>
+                            <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-md text-sm">
+                                编辑
+                            </button>
+                            <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm">
+                                删除
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <div class="mr-6">
+                            <i class="fas fa-calendar-alt mr-2"></i> 发布时间：11月5日
+                        </div>
+                        <div class="mr-6">
+                            <i class="fas fa-clock mr-2"></i> 截止时间：11月20日 23:59
+                        </div>
+                        <div class="mr-6">
+                            <i class="fas fa-list-ol mr-2"></i> 5道题目
+                        </div>
+                        <div>
+                            <i class="fas fa-paperclip mr-2"></i> 无附件
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-gray-600">
+                            本次作业要求实现几个简单的算法，包括排序、查找和简单的数据结构操作。请按照题目要求编写代码并提交。
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-32 bg-gray-200 rounded-full h-2.5 mr-2">
+                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 30%"></div>
+                            </div>
+                            <span class="text-sm text-gray-600">9/30人已提交</span>
+                        </div>
+                        <a href="teacher-grading.html" class="text-blue-500 hover:text-blue-700">
+                            前往批改 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 已截止作业 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-gray-100 px-6 py-3 flex justify-between items-center">
+                    <span class="font-medium text-gray-600">已截止</span>
+                    <span class="text-sm text-gray-600">5天前截止</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h2 class="text-xl font-semibold">线性代数作业</h2>
+                            <p class="text-gray-600 text-sm">线性代数 · 计算机2101班</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm">
+                                查看
+                            </button>
+                            <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-md text-sm">
+                                统计
+                            </button>
+                            <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm">
+                                删除
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <div class="mr-6">
+                            <i class="fas fa-calendar-alt mr-2"></i> 发布时间：11月8日
+                        </div>
+                        <div class="mr-6">
+                            <i class="fas fa-clock mr-2"></i> 截止时间：11月10日 23:59
+                        </div>
+                        <div class="mr-6">
+                            <i class="fas fa-list-ol mr-2"></i> 8道题目
+                        </div>
+                        <div>
+                            <i class="fas fa-paperclip mr-2"></i> 2个附件
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-gray-600">
+                            本次作业主要涉及矩阵运算和线性方程组的求解，请按照附件中的要求完成所有题目。如有疑问可在讨论区提问。
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-32 bg-gray-200 rounded-full h-2.5 mr-2">
+                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 93%"></div>
+                            </div>
+                            <span class="text-sm text-gray-600">28/30人已提交</span>
+                        </div>
+                        <a href="teacher-stats.html" class="text-blue-500 hover:text-blue-700">
+                            查看统计 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 已截止作业 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="bg-gray-100 px-6 py-3 flex justify-between items-center">
+                    <span class="font-medium text-gray-600">已截止</span>
+                    <span class="text-sm text-gray-600">10天前截止</span>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h2 class="text-xl font-semibold">数据结构作业</h2>
+                            <p class="text-gray-600 text-sm">数据结构 · 计算机2101班</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm">
+                                查看
+                            </button>
+                            <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-md text-sm">
+                                统计
+                            </button>
+                            <button class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-md text-sm">
+                                删除
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <div class="mr-6">
+                            <i class="fas fa-calendar-alt mr-2"></i> 发布时间：10月30日
+                        </div>
+                        <div class="mr-6">
+                            <i class="fas fa-clock mr-2"></i> 截止时间：11月5日 23:59
+                        </div>
+                        <div class="mr-6">
+                            <i class="fas fa-list-ol mr-2"></i> 7道题目
+                        </div>
+                        <div>
+                            <i class="fas fa-paperclip mr-2"></i> 1个附件
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-gray-600">
+                            本次作业主要涉及树和图的基本操作，请仔细阅读题目要求，完成所有题目并提交。如有疑问可在讨论区提问。
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <div class="w-32 bg-gray-200 rounded-full h-2.5 mr-2">
+                                <div class="bg-blue-600 h-2.5 rounded-full" style="width: 100%"></div>
+                            </div>
+                            <span class="text-sm text-gray-600">30/30人已提交</span>
+                        </div>
+                        <a href="teacher-stats.html" class="text-blue-500 hover:text-blue-700">
+                            查看统计 →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分页 -->
+        <div class="flex justify-between items-center">
+            <div class="text-sm text-gray-500">
+                显示 1 到 4 条，共 12 条
+            </div>
+            <div class="flex">
+                <button class="px-3 py-1 border rounded-l-md bg-white text-gray-500">上一页</button>
+                <button class="px-3 py-1 border-t border-b bg-blue-50 text-blue-600 border-blue-500">1</button>
+                <button class="px-3 py-1 border-t border-b bg-white text-gray-500">2</button>
+                <button class="px-3 py-1 border-t border-b bg-white text-gray-500">3</button>
+                <button class="px-3 py-1 border rounded-r-md bg-white text-gray-500">下一页</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

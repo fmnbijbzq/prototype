@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线作业系统 - Web原型</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+        .prototype-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
+            gap: 30px;
+        }
+        .frame-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .frame-header {
+            background-color: #4a5568;
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .frame-title {
+            display: flex;
+            align-items: center;
+        }
+        .frame-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .frame-actions button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        .frame-actions button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 700px;
+            transition: height 0.3s ease;
+        }
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 50;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .fullscreen-container {
+            background-color: white;
+            border-radius: 10px;
+            width: 95%;
+            height: 95%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .fullscreen-header {
+            background-color: #4a5568;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .fullscreen-iframe {
+            flex: 1;
+            border: none;
+            width: 100%;
+            height: 100%;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .section-controls {
+            display: flex;
+            gap: 10px;
+        }
+        .section-controls button {
+            background-color: #4a5568;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .section-controls button:hover {
+            background-color: #2d3748;
+        }
+        .expand-all {
+            height: 1000px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold mb-6 text-center">在线作业系统 - Web原型</h1>
+        <p class="mb-6 text-center text-gray-600">以下是系统各主要页面的Web端原型设计</p>
+
+        <!-- 全屏显示覆盖层 -->
+        <div id="fullscreen-overlay" class="fullscreen-overlay">
+            <div class="fullscreen-container">
+                <div class="fullscreen-header">
+                    <h2 id="fullscreen-title" class="text-xl font-bold">页面标题</h2>
+                    <button id="close-fullscreen" class="text-white hover:text-gray-300">
+                        <i class="fas fa-times fa-lg"></i>
+                    </button>
+                </div>
+                <iframe id="fullscreen-iframe" class="fullscreen-iframe" src=""></iframe>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <div class="section-header">
+                <h2 class="text-xl font-bold">登录页面</h2>
+                <div class="section-controls">
+                    <button class="expand-frames" data-section="login"><i class="fas fa-expand-alt mr-2"></i>展开全部</button>
+                    <button class="collapse-frames" data-section="login"><i class="fas fa-compress-alt mr-2"></i>收起全部</button>
+                </div>
+            </div>
+            <div class="prototype-container" id="login-container">
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>登录</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="login.html" data-title="登录"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="login.html"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <div class="section-header">
+                <h2 class="text-xl font-bold">学生页面</h2>
+                <div class="section-controls">
+                    <button class="expand-frames" data-section="student"><i class="fas fa-expand-alt mr-2"></i>展开全部</button>
+                    <button class="collapse-frames" data-section="student"><i class="fas fa-compress-alt mr-2"></i>收起全部</button>
+                </div>
+            </div>
+            <div class="prototype-container" id="student-container">
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>学生首页</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="student-dashboard.html" data-title="学生首页"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="student-dashboard.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>我的作业</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="student-assignments.html" data-title="我的作业"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="student-assignments.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>我的成绩</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="student-grades.html" data-title="我的成绩"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="student-grades.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>讨论区</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="student-discussion.html" data-title="讨论区"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="student-discussion.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>个人信息</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="student-profile.html" data-title="个人信息"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="student-profile.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>作业详情与提交</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="student-assignment-detail.html" data-title="作业详情与提交"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="student-assignment-detail.html"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <div class="section-header">
+                <h2 class="text-xl font-bold">教师页面</h2>
+                <div class="section-controls">
+                    <button class="expand-frames" data-section="teacher"><i class="fas fa-expand-alt mr-2"></i>展开全部</button>
+                    <button class="collapse-frames" data-section="teacher"><i class="fas fa-compress-alt mr-2"></i>收起全部</button>
+                </div>
+            </div>
+            <div class="prototype-container" id="teacher-container">
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>教师首页</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="teacher-dashboard.html" data-title="教师首页"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="teacher-dashboard.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>我的作业</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="teacher-assignments.html" data-title="我的作业"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="teacher-assignments.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>批改作业</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="teacher-grading.html" data-title="批改作业"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="teacher-grading.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>讨论区</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="teacher-discussion.html" data-title="讨论区"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="teacher-discussion.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>统计分析</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="teacher-stats.html" data-title="统计分析"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="teacher-stats.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>个人信息</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="teacher-profile.html" data-title="个人信息"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="teacher-profile.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>创建作业</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="teacher-create-assignment.html" data-title="创建作业"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="teacher-create-assignment.html"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <div class="section-header">
+                <h2 class="text-xl font-bold">管理员页面</h2>
+                <div class="section-controls">
+                    <button class="expand-frames" data-section="admin"><i class="fas fa-expand-alt mr-2"></i>展开全部</button>
+                    <button class="collapse-frames" data-section="admin"><i class="fas fa-compress-alt mr-2"></i>收起全部</button>
+                </div>
+            </div>
+            <div class="prototype-container" id="admin-container">
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>管理员首页</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="admin-dashboard.html" data-title="管理员首页"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="admin-dashboard.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>用户管理</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="admin-users.html" data-title="用户管理"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="admin-users.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>班级管理</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="admin-classes.html" data-title="班级管理"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="admin-classes.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>统计分析</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="admin-stats.html" data-title="统计分析"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="admin-stats.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>讨论区管理</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="admin-discussion.html" data-title="讨论区管理"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="admin-discussion.html"></iframe>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-header">
+                        <div class="frame-title">
+                            <span>个人信息</span>
+                        </div>
+                        <div class="frame-actions">
+                            <button class="expand-frame" title="展开"><i class="fas fa-arrows-alt-v"></i></button>
+                            <button class="fullscreen-frame" title="全屏查看" data-src="admin-profile.html" data-title="个人信息"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                    <iframe src="admin-profile.html"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 全屏查看功能
+            const fullscreenOverlay = document.getElementById('fullscreen-overlay');
+            const fullscreenIframe = document.getElementById('fullscreen-iframe');
+            const fullscreenTitle = document.getElementById('fullscreen-title');
+            const closeFullscreen = document.getElementById('close-fullscreen');
+
+            // 打开全屏
+            document.querySelectorAll('.fullscreen-frame').forEach(button => {
+                button.addEventListener('click', function() {
+                    const src = this.getAttribute('data-src');
+                    const title = this.getAttribute('data-title');
+                    fullscreenIframe.src = src;
+                    fullscreenTitle.textContent = title;
+                    fullscreenOverlay.style.display = 'flex';
+                    document.body.style.overflow = 'hidden'; // 防止背景滚动
+                });
+            });
+
+            // 关闭全屏
+            closeFullscreen.addEventListener('click', function() {
+                fullscreenOverlay.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                // 延迟清空src，避免闪烁
+                setTimeout(() => {
+                    fullscreenIframe.src = '';
+                }, 300);
+            });
+
+            // 展开单个框架
+            document.querySelectorAll('.expand-frame').forEach(button => {
+                button.addEventListener('click', function() {
+                    const container = this.closest('.frame-container');
+                    const iframe = container.querySelector('iframe');
+
+                    if (iframe.classList.contains('expand-all')) {
+                        iframe.classList.remove('expand-all');
+                        this.innerHTML = '<i class="fas fa-arrows-alt-v"></i>';
+                        this.title = '展开';
+                    } else {
+                        iframe.classList.add('expand-all');
+                        this.innerHTML = '<i class="fas fa-compress-alt"></i>';
+                        this.title = '收起';
+                    }
+                });
+            });
+
+            // 展开/收起所有框架
+            document.querySelectorAll('.expand-frames').forEach(button => {
+                button.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    const container = document.getElementById(section + '-container');
+                    const iframes = container.querySelectorAll('iframe');
+                    const expandButtons = container.querySelectorAll('.expand-frame');
+
+                    iframes.forEach(iframe => {
+                        iframe.classList.add('expand-all');
+                    });
+
+                    expandButtons.forEach(btn => {
+                        btn.innerHTML = '<i class="fas fa-compress-alt"></i>';
+                        btn.title = '收起';
+                    });
+                });
+            });
+
+            document.querySelectorAll('.collapse-frames').forEach(button => {
+                button.addEventListener('click', function() {
+                    const section = this.getAttribute('data-section');
+                    const container = document.getElementById(section + '-container');
+                    const iframes = container.querySelectorAll('iframe');
+                    const expandButtons = container.querySelectorAll('.expand-frame');
+
+                    iframes.forEach(iframe => {
+                        iframe.classList.remove('expand-all');
+                    });
+
+                    expandButtons.forEach(btn => {
+                        btn.innerHTML = '<i class="fas fa-arrows-alt-v"></i>';
+                        btn.title = '展开';
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

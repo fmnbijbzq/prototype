@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在线作业系统原型</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            padding: 20px;
+        }
+        .prototype-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(375px, 1fr));
+            gap: 20px;
+        }
+        .frame-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .frame-title {
+            background-color: #4a5568;
+            color: white;
+            padding: 10px 15px;
+            font-weight: bold;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 667px; /* iPhone 15 Pro height */
+        }
+        .device-frame {
+            width: 375px; /* iPhone 15 Pro width */
+            margin: 0 auto;
+            border: 10px solid #333;
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .device-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background-color: #333;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto">
+        <h1 class="text-3xl font-bold mb-6 text-center">在线作业系统原型</h1>
+        <p class="mb-6 text-center text-gray-600">以下是系统各主要页面的原型设计，适配移动设备尺寸</p>
+
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-2">登录页面</h2>
+            <div class="prototype-container">
+                <div class="frame-container">
+                    <div class="frame-title">登录</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="login.html"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-2">学生页面</h2>
+            <div class="prototype-container">
+                <div class="frame-container">
+                    <div class="frame-title">学生首页</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="student-dashboard.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">我的作业</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="student-assignments.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">我的成绩</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="student-grades.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">讨论区</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="student-discussion.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">个人信息</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="student-profile.html"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-2">教师页面</h2>
+            <div class="prototype-container">
+                <div class="frame-container">
+                    <div class="frame-title">教师首页</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="teacher-dashboard.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">我的作业</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="teacher-assignments.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">批改作业</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="teacher-grading.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">讨论区</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="teacher-discussion.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">统计分析</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="teacher-stats.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">个人信息</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="teacher-profile.html"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <h2 class="text-xl font-bold mb-2">管理员页面</h2>
+            <div class="prototype-container">
+                <div class="frame-container">
+                    <div class="frame-title">管理员首页</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="admin-dashboard.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">用户管理</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="admin-users.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">班级管理</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="admin-classes.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">统计分析</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="admin-stats.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">讨论区</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="admin-discussion.html"></iframe>
+                    </div>
+                </div>
+                <div class="frame-container">
+                    <div class="frame-title">个人信息</div>
+                    <div class="device-frame">
+                        <div class="device-notch"></div>
+                        <iframe src="admin-profile.html"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

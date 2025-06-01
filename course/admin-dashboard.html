@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员首页 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">管理员首页</h1>
+        <div class="flex items-center">
+            <span class="mr-2">管理员</span>
+            <img src="https://via.placeholder.com/30" alt="头像" class="rounded-full">
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto p-4 pb-20">
+        <!-- 欢迎信息 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <h2 class="text-lg font-semibold mb-2">欢迎回来，管理员！</h2>
+            <p class="text-gray-600">今天是2023年11月15日，星期三</p>
+        </div>
+
+        <!-- 系统概览 -->
+        <h2 class="text-lg font-semibold mb-2">系统概览</h2>
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div class="stat-card">
+                <span class="text-gray-500 text-sm">用户总数</span>
+                <div class="flex items-end justify-between mt-1">
+                    <span class="text-2xl font-bold">1,256</span>
+                    <span class="text-green-500 text-sm">
+                        <i class="fas fa-arrow-up"></i> 5%
+                    </span>
+                </div>
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>教师: 56</span>
+                    <span>学生: 1,200</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="text-gray-500 text-sm">作业总数</span>
+                <div class="flex items-end justify-between mt-1">
+                    <span class="text-2xl font-bold">328</span>
+                    <span class="text-green-500 text-sm">
+                        <i class="fas fa-arrow-up"></i> 12%
+                    </span>
+                </div>
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>本周: 42</span>
+                    <span>本月: 156</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="text-gray-500 text-sm">平均提交率</span>
+                <div class="flex items-end justify-between mt-1">
+                    <span class="text-2xl font-bold">92.5%</span>
+                    <span class="text-green-500 text-sm">
+                        <i class="fas fa-arrow-up"></i> 3%
+                    </span>
+                </div>
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>最高: 100%</span>
+                    <span>最低: 75%</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="text-gray-500 text-sm">讨论区活跃度</span>
+                <div class="flex items-end justify-between mt-1">
+                    <span class="text-2xl font-bold">156</span>
+                    <span class="text-red-500 text-sm">
+                        <i class="fas fa-arrow-down"></i> 8%
+                    </span>
+                </div>
+                <div class="flex justify-between text-xs text-gray-500 mt-2">
+                    <span>新帖: 28</span>
+                    <span>回复: 128</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 快捷操作 -->
+        <h2 class="text-lg font-semibold mb-2">快捷操作</h2>
+        <div class="grid grid-cols-4 gap-4 mb-4">
+            <div class="bg-white rounded-lg shadow-md p-3 flex flex-col items-center">
+                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                    <i class="fas fa-user-plus text-blue-600"></i>
+                </div>
+                <span class="text-xs text-center">添加用户</span>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-3 flex flex-col items-center">
+                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mb-2">
+                    <i class="fas fa-users text-green-600"></i>
+                </div>
+                <span class="text-xs text-center">班级管理</span>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-3 flex flex-col items-center">
+                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mb-2">
+                    <i class="fas fa-chart-bar text-purple-600"></i>
+                </div>
+                <span class="text-xs text-center">数据统计</span>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-3 flex flex-col items-center">
+                <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mb-2">
+                    <i class="fas fa-cog text-yellow-600"></i>
+                </div>
+                <span class="text-xs text-center">系统设置</span>
+            </div>
+        </div>
+
+        <!-- 最近添加的用户 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-lg font-semibold">最近添加的用户</h2>
+                <a href="#" class="text-blue-500 text-sm">查看全部</a>
+            </div>
+            <div class="space-y-3">
+                <div class="flex items-center p-2 border-b">
+                    <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                    <div class="flex-1">
+                        <h3 class="font-medium">张三</h3>
+                        <p class="text-sm text-gray-500">学生 · 计算机2101班</p>
+                    </div>
+                    <span class="text-xs text-gray-500">今天 10:30</span>
+                </div>
+                <div class="flex items-center p-2 border-b">
+                    <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                    <div class="flex-1">
+                        <h3 class="font-medium">李四</h3>
+                        <p class="text-sm text-gray-500">学生 · 计算机2101班</p>
+                    </div>
+                    <span class="text-xs text-gray-500">今天 09:15</span>
+                </div>
+                <div class="flex items-center p-2">
+                    <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                    <div class="flex-1">
+                        <h3 class="font-medium">赵老师</h3>
+                        <p class="text-sm text-gray-500">教师 · 数学系</p>
+                    </div>
+                    <span class="text-xs text-gray-500">昨天 14:20</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 系统日志 -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <div class="flex justify-between items-center mb-3">
+                <h2 class="text-lg font-semibold">系统日志</h2>
+                <a href="#" class="text-blue-500 text-sm">查看全部</a>
+            </div>
+            <div class="space-y-2 text-sm">
+                <div class="p-2 border-b">
+                    <div class="flex justify-between">
+                        <span class="font-medium">用户登录</span>
+                        <span class="text-xs text-gray-500">10:45</span>
+                    </div>
+                    <p class="text-gray-600">王老师（ID: T20150001）登录系统</p>
+                </div>
+                <div class="p-2 border-b">
+                    <div class="flex justify-between">
+                        <span class="font-medium">作业发布</span>
+                        <span class="text-xs text-gray-500">10:30</span>
+                    </div>
+                    <p class="text-gray-600">王老师发布了新作业：高等数学作业</p>
+                </div>
+                <div class="p-2 border-b">
+                    <div class="flex justify-between">
+                        <span class="font-medium">用户添加</span>
+                        <span class="text-xs text-gray-500">10:15</span>
+                    </div>
+                    <p class="text-gray-600">管理员添加了新用户：张三（学生）</p>
+                </div>
+                <div class="p-2">
+                    <div class="flex justify-between">
+                        <span class="font-medium">系统备份</span>
+                        <span class="text-xs text-gray-500">09:00</span>
+                    </div>
+                    <p class="text-gray-600">系统自动备份完成</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部导航 -->
+    <nav class="bottom-nav">
+        <div class="flex justify-around py-2">
+            <a href="#" class="flex flex-col items-center text-blue-500">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">首页</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-users text-xl"></i>
+                <span class="text-xs mt-1">用户</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-layer-group text-xl"></i>
+                <span class="text-xs mt-1">班级</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-chart-bar text-xl"></i>
+                <span class="text-xs mt-1">统计</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </a>
+        </div>
+    </nav>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人信息 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-header {
+            background-color: #3182ce;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin: 0 auto 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 个人信息头部 -->
+    <div class="profile-header">
+        <img src="https://via.placeholder.com/80" alt="头像" class="avatar">
+        <h1 class="text-xl font-bold">系统管理员</h1>
+        <p class="text-sm opacity-80">超级管理员</p>
+    </div>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto p-4 pb-20">
+        <!-- 个人信息卡片 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <h2 class="text-lg font-semibold mb-3">基本信息</h2>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600">用户名</span>
+                    <span class="font-medium">admin</span>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <span class="text-gray-600">姓名</span>
+                    <span class="font-medium">系统管理员</span>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <span class="text-gray-600">角色</span>
+                    <span class="font-medium">超级管理员</span>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <span class="text-gray-600">部门</span>
+                    <span class="font-medium">系统管理部</span>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <span class="text-gray-600">邮箱</span>
+                    <span class="font-medium">admin@example.com</span>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <span class="text-gray-600">手机</span>
+                    <span class="font-medium">135****6789</span>
+                </div>
+            </div>
+            <button class="mt-4 w-full py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md">
+                编辑个人信息
+            </button>
+        </div>
+
+        <!-- 账户安全 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <h2 class="text-lg font-semibold mb-3">账户安全</h2>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <span class="font-medium">修改密码</span>
+                        <p class="text-sm text-gray-500">定期修改密码可以提高账户安全性</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <div>
+                        <span class="font-medium">双因素认证</span>
+                        <p class="text-sm text-gray-500">启用双因素认证增强账户安全</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <div>
+                        <span class="font-medium">登录日志</span>
+                        <p class="text-sm text-gray-500">查看账户的登录记录</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 系统设置 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <h2 class="text-lg font-semibold mb-3">系统设置</h2>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <span class="font-medium">系统配置</span>
+                        <p class="text-sm text-gray-500">管理系统全局配置参数</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <div>
+                        <span class="font-medium">权限管理</span>
+                        <p class="text-sm text-gray-500">设置用户角色和权限</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <div>
+                        <span class="font-medium">数据备份</span>
+                        <p class="text-sm text-gray-500">管理系统数据备份和恢复</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <div>
+                        <span class="font-medium">系统日志</span>
+                        <p class="text-sm text-gray-500">查看系统操作日志</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- 通知设置 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <h2 class="text-lg font-semibold mb-3">通知设置</h2>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <span class="font-medium">系统通知</span>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" value="" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <div>
+                        <span class="font-medium">邮件通知</span>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" value="" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                </div>
+                <div class="border-t pt-3 flex justify-between items-center">
+                    <div>
+                        <span class="font-medium">短信通知</span>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" value="" class="sr-only peer">
+                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!-- 退出登录按钮 -->
+        <button class="w-full py-3 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-md font-medium">
+            退出登录
+        </button>
+    </main>
+
+    <!-- 底部导航 -->
+    <nav class="bottom-nav">
+        <div class="flex justify-around py-2">
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">首页</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-users text-xl"></i>
+                <span class="text-xs mt-1">用户</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-layer-group text-xl"></i>
+                <span class="text-xs mt-1">班级</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-chart-bar text-xl"></i>
+                <span class="text-xs mt-1">统计</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-blue-500">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </a>
+        </div>
+    </nav>
+</body>
+</html>

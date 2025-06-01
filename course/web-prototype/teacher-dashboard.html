@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教师首页 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 240px;
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            background-color: #2d3748;
+        }
+        .nav-item.active {
+            background-color: #2b6cb0;
+        }
+        .nav-item i {
+            width: 24px;
+            margin-right: 10px;
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <div class="sidebar">
+        <div class="p-4 border-b border-gray-700">
+            <h1 class="text-xl font-bold">在线作业系统</h1>
+            <p class="text-sm text-gray-400">教师端</p>
+        </div>
+        <div class="mt-4">
+            <a href="teacher-dashboard.html" class="nav-item active">
+                <i class="fas fa-home"></i> 首页
+            </a>
+            <a href="teacher-assignments.html" class="nav-item">
+                <i class="fas fa-book"></i> 我的作业
+            </a>
+            <a href="teacher-grading.html" class="nav-item">
+                <i class="fas fa-check-square"></i> 批改作业
+            </a>
+            <a href="teacher-stats.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i> 统计分析
+            </a>
+            <a href="teacher-discussion.html" class="nav-item">
+                <i class="fas fa-comments"></i> 讨论区
+            </a>
+            <a href="teacher-profile.html" class="nav-item">
+                <i class="fas fa-user"></i> 个人信息
+            </a>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                <div>
+                    <p class="font-medium">王老师</p>
+                    <p class="text-sm text-gray-400">数学系</p>
+                </div>
+            </div>
+            <button class="mt-2 w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded text-sm">
+                退出登录
+            </button>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <!-- 顶部栏 -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">教师首页</h1>
+            <div class="flex items-center">
+                <div class="relative mr-4">
+                    <i class="fas fa-bell text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-envelope text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 欢迎卡片 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2 class="text-xl font-semibold mb-2">欢迎回来，王老师！</h2>
+                    <p class="text-gray-600">今天是2023年11月15日，星期三</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm text-gray-500">本学期已发布作业</p>
+                    <p class="text-3xl font-bold text-blue-600">12</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 统计卡片 -->
+        <div class="grid grid-cols-4 gap-6 mb-6">
+            <div class="stat-card">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-gray-500">待批改作业</div>
+                    <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-clipboard-check text-red-500"></i>
+                    </div>
+                </div>
+                <div class="text-2xl font-bold">15</div>
+                <div class="text-sm text-gray-500 mt-1">
+                    来自3个班级
+                </div>
+                <a href="teacher-grading.html" class="text-blue-500 text-sm mt-4">立即批改 →</a>
+            </div>
+            <div class="stat-card">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-gray-500">进行中作业</div>
+                    <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-spinner text-blue-500"></i>
+                    </div>
+                </div>
+                <div class="text-2xl font-bold">5</div>
+                <div class="text-sm text-gray-500 mt-1">
+                    平均完成率: 68%
+                </div>
+                <a href="teacher-assignments.html" class="text-blue-500 text-sm mt-4">查看详情 →</a>
+            </div>
+            <div class="stat-card">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-gray-500">已完成作业</div>
+                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-check-circle text-green-500"></i>
+                    </div>
+                </div>
+                <div class="text-2xl font-bold">7</div>
+                <div class="text-sm text-gray-500 mt-1">
+                    平均分: 85.6
+                </div>
+                <a href="teacher-stats.html" class="text-blue-500 text-sm mt-4">查看统计 →</a>
+            </div>
+            <div class="stat-card">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="text-gray-500">讨论区提问</div>
+                    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-question-circle text-purple-500"></i>
+                    </div>
+                </div>
+                <div class="text-2xl font-bold">8</div>
+                <div class="text-sm text-gray-500 mt-1">
+                    未回复: 3
+                </div>
+                <a href="teacher-discussion.html" class="text-blue-500 text-sm mt-4">前往回复 →</a>
+            </div>
+        </div>
+
+        <!-- 快捷操作 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-lg font-semibold mb-4">快捷操作</h2>
+            <div class="grid grid-cols-4 gap-4">
+                <a href="teacher-create-assignment.html" class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                        <i class="fas fa-plus text-blue-600"></i>
+                    </div>
+                    <span class="text-sm text-center">发布作业</span>
+                </a>
+                <a href="teacher-grading.html" class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-2">
+                        <i class="fas fa-check text-green-600"></i>
+                    </div>
+                    <span class="text-sm text-center">批改作业</span>
+                </a>
+                <a href="teacher-stats.html" class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-2">
+                        <i class="fas fa-chart-bar text-purple-600"></i>
+                    </div>
+                    <span class="text-sm text-center">成绩统计</span>
+                </a>
+                <a href="teacher-discussion.html" class="flex flex-col items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mb-2">
+                        <i class="fas fa-bullhorn text-yellow-600"></i>
+                    </div>
+                    <span class="text-sm text-center">发布通知</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- 内容区域 -->
+        <div class="grid grid-cols-2 gap-6">
+            <!-- 左侧：待批改作业 -->
+            <div>
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-semibold">待批改作业</h2>
+                        <a href="teacher-grading.html" class="text-blue-500 text-sm">查看全部 →</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 bg-yellow-50 rounded-md border-l-4 border-yellow-500">
+                            <div class="flex-1">
+                                <h3 class="font-medium">高等数学作业</h3>
+                                <p class="text-sm text-gray-500">截止日期：今天 23:59</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-yellow-500 text-sm font-bold">15/30</span>
+                                <span class="text-xs text-gray-500">已提交/总人数</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-3 bg-gray-50 rounded-md border-l-4 border-gray-500">
+                            <div class="flex-1">
+                                <h3 class="font-medium">线性代数作业</h3>
+                                <p class="text-sm text-gray-500">截止日期：11月10日</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-gray-500 text-sm font-bold">28/30</span>
+                                <span class="text-xs text-gray-500">已提交/总人数</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-3 bg-gray-50 rounded-md border-l-4 border-gray-500">
+                            <div class="flex-1">
+                                <h3 class="font-medium">程序设计作业</h3>
+                                <p class="text-sm text-gray-500">截止日期：11月20日</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-gray-500 text-sm font-bold">12/30</span>
+                                <span class="text-xs text-gray-500">已提交/总人数</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：最近发布的作业 -->
+            <div>
+                <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-semibold">最近发布的作业</h2>
+                        <a href="teacher-assignments.html" class="text-blue-500 text-sm">查看全部 →</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="flex items-center p-3 border-b">
+                            <div class="flex-1">
+                                <h3 class="font-medium">高等数学作业</h3>
+                                <p class="text-sm text-gray-500">发布日期：11月13日</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-sm">截止日期</span>
+                                <span class="text-xs text-gray-500">11月15日 23:59</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-3 border-b">
+                            <div class="flex-1">
+                                <h3 class="font-medium">线性代数作业</h3>
+                                <p class="text-sm text-gray-500">发布日期：11月8日</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-sm">截止日期</span>
+                                <span class="text-xs text-gray-500">11月10日 23:59</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center p-3">
+                            <div class="flex-1">
+                                <h3 class="font-medium">程序设计作业</h3>
+                                <p class="text-sm text-gray-500">发布日期：11月5日</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="block text-sm">截止日期</span>
+                                <span class="text-xs text-gray-500">11月20日 23:59</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 最新讨论 -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-lg font-semibold">最新讨论</h2>
+                        <a href="teacher-discussion.html" class="text-blue-500 text-sm">查看全部 →</a>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="p-3 border-b">
+                            <h3 class="font-medium">关于高数第三章习题的疑问</h3>
+                            <p class="text-sm text-gray-500">李四：老师，我对第15题有些不理解...</p>
+                            <p class="text-xs text-gray-400">2小时前 · <span class="text-red-500">未回复</span></p>
+                        </div>
+                        
+                        <div class="p-3 border-b">
+                            <h3 class="font-medium">线性代数期末复习重点</h3>
+                            <p class="text-sm text-gray-500">张三：老师，能否提供一些期末复习的建议...</p>
+                            <p class="text-xs text-gray-400">昨天 · 已回复</p>
+                        </div>
+                        
+                        <div class="p-3">
+                            <h3 class="font-medium">关于期末考试范围的通知</h3>
+                            <p class="text-sm text-gray-500">王老师：各位同学，期末考试将于12月20日进行...</p>
+                            <p class="text-xs text-gray-400">2天前 · 25条回复</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

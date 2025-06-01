@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的成绩 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 240px;
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            background-color: #2d3748;
+        }
+        .nav-item.active {
+            background-color: #2b6cb0;
+        }
+        .nav-item i {
+            width: 24px;
+            margin-right: 10px;
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e2e8f0;
+            overflow: hidden;
+        }
+        .progress-value {
+            height: 100%;
+            background-color: #4299e1;
+        }
+        .chart-container {
+            height: 200px;
+            position: relative;
+        }
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 30px;
+            background-color: #4299e1;
+            border-radius: 4px 4px 0 0;
+            transition: height 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <div class="sidebar">
+        <div class="p-4 border-b border-gray-700">
+            <h1 class="text-xl font-bold">在线作业系统</h1>
+            <p class="text-sm text-gray-400">学生端</p>
+        </div>
+        <div class="mt-4">
+            <a href="student-dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i> 首页
+            </a>
+            <a href="student-assignments.html" class="nav-item">
+                <i class="fas fa-book"></i> 我的作业
+            </a>
+            <a href="student-grades.html" class="nav-item active">
+                <i class="fas fa-chart-bar"></i> 我的成绩
+            </a>
+            <a href="student-discussion.html" class="nav-item">
+                <i class="fas fa-comments"></i> 讨论区
+            </a>
+            <a href="student-profile.html" class="nav-item">
+                <i class="fas fa-user"></i> 个人信息
+            </a>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                <div>
+                    <p class="font-medium">张三</p>
+                    <p class="text-sm text-gray-400">计算机2101班</p>
+                </div>
+            </div>
+            <button class="mt-2 w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded text-sm">
+                退出登录
+            </button>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <!-- 顶部栏 -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">我的成绩</h1>
+            <div class="flex items-center">
+                <div class="relative mr-4">
+                    <i class="fas fa-bell text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-envelope text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 成绩概览 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-lg font-semibold mb-4">成绩概览</h2>
+            <div class="grid grid-cols-4 gap-6 mb-6">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-blue-600">92.5</div>
+                    <div class="text-sm text-gray-500">平均分</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-green-600">98</div>
+                    <div class="text-sm text-gray-500">最高分</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-yellow-600">85</div>
+                    <div class="text-sm text-gray-500">最低分</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-purple-600">15/20</div>
+                    <div class="text-sm text-gray-500">已完成/总作业</div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <div class="flex justify-between mb-1">
+                    <span class="text-sm text-gray-600">完成率</span>
+                    <span class="text-sm font-medium">75%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-value" style="width: 75%"></div>
+                </div>
+            </div>
+            <div>
+                <div class="flex justify-between mb-1">
+                    <span class="text-sm text-gray-600">优秀率</span>
+                    <span class="text-sm font-medium">80%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-value" style="width: 80%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 成绩趋势图 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-lg font-semibold mb-4">成绩趋势</h2>
+            <div class="chart-container mb-2">
+                <div class="chart-bar" style="left: 5%; height: 60%; background-color: #4299e1;"></div>
+                <div class="chart-bar" style="left: 15%; height: 80%; background-color: #4299e1;"></div>
+                <div class="chart-bar" style="left: 25%; height: 70%; background-color: #4299e1;"></div>
+                <div class="chart-bar" style="left: 35%; height: 90%; background-color: #4299e1;"></div>
+                <div class="chart-bar" style="left: 45%; height: 85%; background-color: #4299e1;"></div>
+                <div class="chart-bar" style="left: 55%; height: 95%; background-color: #4299e1;"></div>
+                <div class="chart-bar" style="left: 65%; height: 88%; background-color: #4299e1;"></div>
+                <div class="chart-bar" style="left: 75%; height: 92%; background-color: #4299e1;"></div>
+                <div class="chart-bar" style="left: 85%; height: 75%; background-color: #4299e1;"></div>
+                
+                <!-- 班级平均分趋势线 -->
+                <div style="position: absolute; left: 0; right: 0; bottom: 50%; height: 2px; background-color: #f59e0b; z-index: 10;"></div>
+            </div>
+            <div class="flex justify-between text-xs text-gray-500 px-4">
+                <span>作业1</span>
+                <span>作业2</span>
+                <span>作业3</span>
+                <span>作业4</span>
+                <span>作业5</span>
+                <span>作业6</span>
+                <span>作业7</span>
+                <span>作业8</span>
+                <span>作业9</span>
+            </div>
+            <div class="flex justify-center mt-4 text-sm">
+                <div class="flex items-center mr-6">
+                    <div class="w-3 h-3 bg-blue-500 rounded-full mr-2"></div>
+                    <span>我的成绩</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="w-6 h-1 bg-yellow-500 mr-2"></div>
+                    <span>班级平均分</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 课程筛选 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-6">
+            <div class="flex flex-wrap gap-2">
+                <button class="px-4 py-2 bg-blue-500 text-white rounded-full text-sm">全部课程</button>
+                <button class="px-4 py-2 bg-gray-200 rounded-full text-sm">高等数学</button>
+                <button class="px-4 py-2 bg-gray-200 rounded-full text-sm">线性代数</button>
+                <button class="px-4 py-2 bg-gray-200 rounded-full text-sm">程序设计</button>
+                <button class="px-4 py-2 bg-gray-200 rounded-full text-sm">数据结构</button>
+                <button class="px-4 py-2 bg-gray-200 rounded-full text-sm">计算机网络</button>
+            </div>
+        </div>
+
+        <!-- 成绩列表 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">作业名称</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">课程</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">提交时间</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">成绩</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">班级平均分</th>
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">操作</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">数据结构作业</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">数据结构</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">2023-11-10</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-green-600">95</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">88</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
+                            <a href="#">查看详情</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">计算机网络作业</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">计算机网络</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">2023-11-08</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-green-600">88</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">82</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
+                            <a href="#">查看详情</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">高等数学作业</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">高等数学</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">2023-11-05</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-green-600">92</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">85</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
+                            <a href="#">查看详情</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">线性代数作业</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">线性代数</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">2023-11-01</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-yellow-600">85</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">80</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
+                            <a href="#">查看详情</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">程序设计作业</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">程序设计</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">2023-10-28</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-green-600">98</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">86</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-500">
+                            <a href="#">查看详情</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 分页 -->
+        <div class="flex justify-between items-center">
+            <div class="text-sm text-gray-500">
+                显示 1 到 5 条，共 15 条
+            </div>
+            <div class="flex">
+                <button class="px-3 py-1 border rounded-l-md bg-white text-gray-500">上一页</button>
+                <button class="px-3 py-1 border-t border-b bg-blue-50 text-blue-600 border-blue-500">1</button>
+                <button class="px-3 py-1 border-t border-b bg-white text-gray-500">2</button>
+                <button class="px-3 py-1 border-t border-b bg-white text-gray-500">3</button>
+                <button class="px-3 py-1 border rounded-r-md bg-white text-gray-500">下一页</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

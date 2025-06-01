@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建作业 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 240px;
+            background-color: #1a202c;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .content {
+            margin-left: 240px;
+            padding: 20px;
+        }
+        .nav-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            background-color: #2d3748;
+        }
+        .nav-item.active {
+            background-color: #2b6cb0;
+        }
+        .nav-item i {
+            width: 24px;
+            margin-right: 10px;
+        }
+        .question-card {
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            margin-bottom: 1.5rem;
+            background-color: white;
+        }
+        .question-header {
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            border-radius: 0.5rem 0.5rem 0 0;
+        }
+        .question-body {
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- 侧边栏导航 -->
+    <div class="sidebar">
+        <div class="p-4 border-b border-gray-700">
+            <h1 class="text-xl font-bold">在线作业系统</h1>
+            <p class="text-sm text-gray-400">教师端</p>
+        </div>
+        <div class="mt-4">
+            <a href="teacher-dashboard.html" class="nav-item">
+                <i class="fas fa-home"></i> 首页
+            </a>
+            <a href="teacher-assignments.html" class="nav-item active">
+                <i class="fas fa-book"></i> 我的作业
+            </a>
+            <a href="teacher-grading.html" class="nav-item">
+                <i class="fas fa-check-square"></i> 批改作业
+            </a>
+            <a href="teacher-stats.html" class="nav-item">
+                <i class="fas fa-chart-bar"></i> 统计分析
+            </a>
+            <a href="teacher-discussion.html" class="nav-item">
+                <i class="fas fa-comments"></i> 讨论区
+            </a>
+            <a href="teacher-profile.html" class="nav-item">
+                <i class="fas fa-user"></i> 个人信息
+            </a>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-700">
+            <div class="flex items-center">
+                <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                <div>
+                    <p class="font-medium">王老师</p>
+                    <p class="text-sm text-gray-400">数学系</p>
+                </div>
+            </div>
+            <button class="mt-2 w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded text-sm">
+                退出登录
+            </button>
+        </div>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="content">
+        <!-- 顶部栏 -->
+        <div class="flex justify-between items-center mb-6">
+            <div class="flex items-center">
+                <a href="teacher-assignments.html" class="text-gray-500 mr-2">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <h1 class="text-2xl font-bold">创建作业</h1>
+            </div>
+            <div class="flex items-center">
+                <div class="relative mr-4">
+                    <i class="fas fa-bell text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </div>
+                <div class="relative">
+                    <i class="fas fa-envelope text-gray-500 text-xl"></i>
+                    <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 作业基本信息 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-lg font-semibold mb-4">基本信息</h2>
+            <div class="grid grid-cols-2 gap-6">
+                <div>
+                    <label for="title" class="block text-sm font-medium text-gray-700 mb-1">作业标题</label>
+                    <input type="text" id="title" class="w-full border rounded-md p-2" placeholder="请输入作业标题">
+                </div>
+                <div>
+                    <label for="course" class="block text-sm font-medium text-gray-700 mb-1">所属课程</label>
+                    <select id="course" class="w-full border rounded-md p-2">
+                        <option>高等数学</option>
+                        <option>线性代数</option>
+                        <option>程序设计</option>
+                        <option>数据结构</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="class" class="block text-sm font-medium text-gray-700 mb-1">班级</label>
+                    <select id="class" class="w-full border rounded-md p-2">
+                        <option>计算机2101班</option>
+                        <option>计算机2102班</option>
+                        <option>软件工程2101班</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="deadline" class="block text-sm font-medium text-gray-700 mb-1">截止日期</label>
+                    <input type="datetime-local" id="deadline" class="w-full border rounded-md p-2">
+                </div>
+                <div class="col-span-2">
+                    <label for="description" class="block text-sm font-medium text-gray-700 mb-1">作业说明</label>
+                    <textarea id="description" rows="4" class="w-full border rounded-md p-2" placeholder="请输入作业说明..."></textarea>
+                </div>
+                <div class="col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">附件</label>
+                    <div class="flex items-center">
+                        <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-4 py-2 rounded-md mr-4">
+                            <i class="fas fa-upload mr-2"></i> 上传附件
+                        </button>
+                        <span class="text-sm text-gray-500">支持PDF、Word、Excel等格式，最大20MB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 题目列表 -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg font-semibold">题目列表</h2>
+                <div class="flex space-x-2">
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md text-sm">
+                        <i class="fas fa-plus mr-1"></i> 添加题目
+                    </button>
+                    <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-3 py-1 rounded-md text-sm">
+                        <i class="fas fa-file-import mr-1"></i> 从题库导入
+                    </button>
+                </div>
+            </div>
+
+            <!-- 选择题 -->
+            <div class="question-card">
+                <div class="question-header flex justify-between items-center">
+                    <div class="flex items-center">
+                        <span class="mr-2">1.</span>
+                        <select class="border rounded p-1 mr-2">
+                            <option>选择题</option>
+                            <option>填空题</option>
+                            <option>判断题</option>
+                            <option>简答题</option>
+                        </select>
+                        <input type="number" class="border rounded w-16 p-1 text-center" value="10"> <span class="ml-1">分</span>
+                    </div>
+                    <div>
+                        <button class="text-gray-500 hover:text-gray-700 mr-2">
+                            <i class="fas fa-arrows-alt"></i>
+                        </button>
+                        <button class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="question-body">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">题目内容</label>
+                        <textarea class="w-full border rounded-md p-2" rows="2" placeholder="请输入题目内容..."></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">选项</label>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <input type="radio" name="q1_correct" class="mr-2">
+                                <span class="mr-2">A.</span>
+                                <input type="text" class="flex-1 border rounded-md p-1" placeholder="选项内容...">
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" name="q1_correct" class="mr-2">
+                                <span class="mr-2">B.</span>
+                                <input type="text" class="flex-1 border rounded-md p-1" placeholder="选项内容...">
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" name="q1_correct" class="mr-2">
+                                <span class="mr-2">C.</span>
+                                <input type="text" class="flex-1 border rounded-md p-1" placeholder="选项内容...">
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" name="q1_correct" class="mr-2">
+                                <span class="mr-2">D.</span>
+                                <input type="text" class="flex-1 border rounded-md p-1" placeholder="选项内容...">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">解析（可选）</label>
+                        <textarea class="w-full border rounded-md p-2" rows="2" placeholder="请输入题目解析..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 填空题 -->
+            <div class="question-card">
+                <div class="question-header flex justify-between items-center">
+                    <div class="flex items-center">
+                        <span class="mr-2">2.</span>
+                        <select class="border rounded p-1 mr-2">
+                            <option>选择题</option>
+                            <option selected>填空题</option>
+                            <option>判断题</option>
+                            <option>简答题</option>
+                        </select>
+                        <input type="number" class="border rounded w-16 p-1 text-center" value="10"> <span class="ml-1">分</span>
+                    </div>
+                    <div>
+                        <button class="text-gray-500 hover:text-gray-700 mr-2">
+                            <i class="fas fa-arrows-alt"></i>
+                        </button>
+                        <button class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="question-body">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">题目内容</label>
+                        <textarea class="w-full border rounded-md p-2" rows="2" placeholder="请输入题目内容，使用 _____ 表示填空位置..."></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">答案</label>
+                        <input type="text" class="w-full border rounded-md p-2" placeholder="请输入正确答案...">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">解析（可选）</label>
+                        <textarea class="w-full border rounded-md p-2" rows="2" placeholder="请输入题目解析..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 简答题 -->
+            <div class="question-card">
+                <div class="question-header flex justify-between items-center">
+                    <div class="flex items-center">
+                        <span class="mr-2">3.</span>
+                        <select class="border rounded p-1 mr-2">
+                            <option>选择题</option>
+                            <option>填空题</option>
+                            <option>判断题</option>
+                            <option selected>简答题</option>
+                        </select>
+                        <input type="number" class="border rounded w-16 p-1 text-center" value="20"> <span class="ml-1">分</span>
+                    </div>
+                    <div>
+                        <button class="text-gray-500 hover:text-gray-700 mr-2">
+                            <i class="fas fa-arrows-alt"></i>
+                        </button>
+                        <button class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="question-body">
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">题目内容</label>
+                        <textarea class="w-full border rounded-md p-2" rows="3" placeholder="请输入题目内容..."></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-sm font-medium text-gray-700 mb-1">参考答案</label>
+                        <textarea class="w-full border rounded-md p-2" rows="3" placeholder="请输入参考答案..."></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">评分标准</label>
+                        <textarea class="w-full border rounded-md p-2" rows="2" placeholder="请输入评分标准..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部操作按钮 -->
+        <div class="flex justify-between items-center bg-white rounded-lg shadow-md p-4">
+            <div class="text-sm text-gray-500">
+                总分：<span class="font-medium">40</span> 分，共 <span class="font-medium">3</span> 道题目
+            </div>
+            <div class="flex space-x-4">
+                <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-md">
+                    保存为草稿
+                </button>
+                <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-md">
+                    发布作业
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

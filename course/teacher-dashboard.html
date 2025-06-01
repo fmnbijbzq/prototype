@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教师首页 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="bg-blue-600 text-white p-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">教师首页</h1>
+        <div class="flex items-center">
+            <span class="mr-2">王老师</span>
+            <img src="https://via.placeholder.com/30" alt="头像" class="rounded-full">
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto p-4 pb-20">
+        <!-- 欢迎信息 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <h2 class="text-lg font-semibold mb-2">欢迎回来，王老师！</h2>
+            <p class="text-gray-600">今天是2023年11月15日，星期三</p>
+        </div>
+
+        <!-- 快捷操作 -->
+        <div class="grid grid-cols-3 gap-4 mb-4">
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                    <i class="fas fa-plus text-blue-600"></i>
+                </div>
+                <span class="text-sm text-center">发布作业</span>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-2">
+                    <i class="fas fa-check text-green-600"></i>
+                </div>
+                <span class="text-sm text-center">批改作业</span>
+            </div>
+            <div class="bg-white rounded-lg shadow-md p-4 flex flex-col items-center">
+                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-2">
+                    <i class="fas fa-chart-bar text-purple-600"></i>
+                </div>
+                <span class="text-sm text-center">成绩统计</span>
+            </div>
+        </div>
+
+        <!-- 待批改作业 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <h2 class="text-lg font-semibold mb-2">待批改作业</h2>
+            <div class="space-y-3">
+                <div class="flex items-center p-2 bg-yellow-50 rounded-md border-l-4 border-yellow-500">
+                    <div class="flex-1">
+                        <h3 class="font-medium">高等数学作业</h3>
+                        <p class="text-sm text-gray-500">截止日期：今天 23:59</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-yellow-500 text-sm font-bold">15/30</span>
+                        <span class="text-xs text-gray-500">已提交/总人数</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center p-2 bg-gray-50 rounded-md border-l-4 border-gray-500">
+                    <div class="flex-1">
+                        <h3 class="font-medium">线性代数作业</h3>
+                        <p class="text-sm text-gray-500">截止日期：11月10日</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-gray-500 text-sm font-bold">28/30</span>
+                        <span class="text-xs text-gray-500">已提交/总人数</span>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="block text-center text-blue-500 mt-3">查看全部 →</a>
+        </div>
+
+        <!-- 最近发布的作业 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <h2 class="text-lg font-semibold mb-2">最近发布的作业</h2>
+            <div class="space-y-3">
+                <div class="flex items-center p-2 border-b">
+                    <div class="flex-1">
+                        <h3 class="font-medium">高等数学作业</h3>
+                        <p class="text-sm text-gray-500">发布日期：11月13日</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-sm">截止日期</span>
+                        <span class="text-xs text-gray-500">11月15日 23:59</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center p-2 border-b">
+                    <div class="flex-1">
+                        <h3 class="font-medium">线性代数作业</h3>
+                        <p class="text-sm text-gray-500">发布日期：11月8日</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-sm">截止日期</span>
+                        <span class="text-xs text-gray-500">11月10日 23:59</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center p-2">
+                    <div class="flex-1">
+                        <h3 class="font-medium">程序设计作业</h3>
+                        <p class="text-sm text-gray-500">发布日期：11月5日</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="block text-sm">截止日期</span>
+                        <span class="text-xs text-gray-500">11月20日 23:59</span>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="block text-center text-blue-500 mt-3">查看全部 →</a>
+        </div>
+
+        <!-- 最新讨论 -->
+        <div class="bg-white rounded-lg shadow-md p-4">
+            <h2 class="text-lg font-semibold mb-2">最新讨论</h2>
+            <div class="space-y-3">
+                <div class="p-2 border-b">
+                    <h3 class="font-medium">关于高数第三章习题的疑问</h3>
+                    <p class="text-sm text-gray-500">李四：老师，我对第15题有些不理解...</p>
+                    <p class="text-xs text-gray-400">2小时前 · 未回复</p>
+                </div>
+                
+                <div class="p-2 border-b">
+                    <h3 class="font-medium">线性代数期末复习重点</h3>
+                    <p class="text-sm text-gray-500">张三：老师，能否提供一些期末复习的建议...</p>
+                    <p class="text-xs text-gray-400">昨天 · 已回复</p>
+                </div>
+            </div>
+            <a href="#" class="block text-center text-blue-500 mt-3">进入讨论区 →</a>
+        </div>
+    </main>
+
+    <!-- 底部导航 -->
+    <nav class="bottom-nav">
+        <div class="flex justify-around py-2">
+            <a href="#" class="flex flex-col items-center text-blue-500">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">首页</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-book text-xl"></i>
+                <span class="text-xs mt-1">作业</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-check-square text-xl"></i>
+                <span class="text-xs mt-1">批改</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-comments text-xl"></i>
+                <span class="text-xs mt-1">讨论</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </a>
+        </div>
+    </nav>
+</body>
+</html>
