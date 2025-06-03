@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教师批改作业流程图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .nav {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .nav a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 20px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .nav a:hover {
+            background-color: #e9ecef;
+        }
+        .nav a.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .mermaid {
+            margin: 20px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .description {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        .key-points {
+            margin-top: 20px;
+        }
+        .key-points ul {
+            padding-left: 20px;
+        }
+        .key-points li {
+            margin-bottom: 8px;
+        }
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">首页</a>
+        <a href="flowchart-main.html">总体流程</a>
+        <a href="flowchart-teacher-publish.html">教师发布</a>
+        <a href="flowchart-student-submit.html">学生提交</a>
+        <a href="flowchart-teacher-grade.html" class="active">教师批改</a>
+        <a href="flowchart-discussion.html">讨论区</a>
+    </div>
+
+    <h1>教师批改作业流程图</h1>
+
+    <div class="description">
+        <h3>流程说明</h3>
+        <p>本流程图展示了教师批改作业的完整过程，包括查看提交列表、批改不同类型的题目、评分和提供反馈等步骤。</p>
+        <div class="key-points">
+            <h4>关键功能点：</h4>
+            <ul>
+                <li>支持客观题自动判分</li>
+                <li>主观题手动评分和评语</li>
+                <li>批量处理和单独处理的灵活操作</li>
+                <li>整体评语功能</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="note">
+        <strong>注意：</strong> 系统会自动保存批改进度，教师可以随时暂停和继续批改工作。
+    </div>
+
+    <div class="mermaid">
+flowchart TD
+    %% 教师批改
+    G1[教师登录系统] --> G2[进入作业批改页面]
+    G2 --> G3[选择某作业查看提交列表]
+    G3 --> G4[点击某学生进入批改界面]
+    G4 --> G5{题目类型}
+    G5 -- 客观题 --> G6[系统自动判分\n教师可手动调整分数]
+    G5 -- 主观题 --> G7[教师查看答案并手动评分\n填写评语]
+    G6 --> G8[可填写整体评语（可选）]
+    G7 --> G8
+    G8 --> G9[逐题或整体保存评分]
+    G9 --> G10[更新该学生的批改结果]
+    G10 --> G11{是否批改完该作业所有学生?}
+    G11 -- 否 --> G3
+    G11 -- 是 --> G12[提交所有批改结果]
+    G12 --> G13[系统更新作业批改状态\n可供学生查看]
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

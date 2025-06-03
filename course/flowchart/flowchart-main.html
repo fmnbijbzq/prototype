@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>总体流程图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .nav {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .nav a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 20px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .nav a:hover {
+            background-color: #e9ecef;
+        }
+        .nav a.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .mermaid {
+            margin: 20px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .back-to-home {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #3498db;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .back-to-home:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">首页</a>
+        <a href="flowchart-main.html" class="active">总体流程</a>
+        <a href="flowchart-teacher-publish.html">教师发布</a>
+        <a href="flowchart-student-submit.html">学生提交</a>
+        <a href="flowchart-teacher-grade.html">教师批改</a>
+        <a href="flowchart-discussion.html">讨论区</a>
+    </div>
+
+    <h1>总体流程图</h1>
+
+    <div class="mermaid">
+flowchart TD
+    %% 教师发布作业流程
+    A1[教师登录系统] --> A2[创建新作业]
+    A2 --> A3[填写作业标题/说明]
+    A3 --> A4[添加题目（选择、填空、判断、简答）]
+    A4 --> A5[上传附件（可选）]
+    A5 --> A6[设置属性：截止日期、可见范围、定时发布]
+    A6 --> A7{是否立即发布?}
+    A7 -- 是 --> A8[作业发布上线]
+    A7 -- 否 --> A9[定时发布任务]
+    A9 --> A8
+
+    %% 学生提交作业流程
+    A8 --> B1[学生登录系统]
+    B1 --> B2[查看作业列表]
+    B2 --> B3[选择某个作业查看详情]
+    B3 --> B4[在线答题]
+    B4 --> B5{是否保存草稿?}
+    B5 -- 是 --> B6[保存草稿，稍后继续]
+    B6 --> B4
+    B5 -- 否 --> B7{是否完成所有题目?}
+    B7 -- 否 --> B4
+    B7 -- 是 --> B8[提交作业]
+    B8 --> B9{当前是否超过截止日期?}
+    B9 -- 否 --> B10[记录提交时间]
+    B9 -- 是 --> B11[禁止提交，提示已截止]
+    B10 --> B12[更新提交状态为已提交]
+
+    %% 教师批改作业流程
+    A8 --> C1[教师登录系统]
+    C1 --> C2[进入作业批改页面]
+    C2 --> C3[查看学生提交列表]
+    C3 --> C4[针对每位学生打开批改界面]
+    C4 --> C5{题目类型}
+    C5 -- 客观题 --> C6[系统自动判分，教师可调整]
+    C5 -- 主观题 --> C7[教师手动评分并填写评语]
+    C6 --> C8[填写整体评语（可选）]
+    C7 --> C8
+    C8 --> C9[逐题/整体保存评分]
+
+    %% 学生查看反馈流程
+    C9 --> D1[教师提交完所有批改结果]
+    D1 --> D2[系统更新批改状态]
+    D2 --> D3[学生登录系统]
+    D3 --> D4[查看作业反馈]
+    D4 --> D5[查看客观题对错 & 得分]
+    D4 --> D6[查看主观题评语 & 得分]
+
+    %% 各流程间的关系标注
+    B10 -.->|批改后| C1
+    C9 -.->|反馈生成| D2
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

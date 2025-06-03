@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讨论区交流流程图</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.6.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .nav {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        .nav a {
+            color: #3498db;
+            text-decoration: none;
+            margin-right: 20px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .nav a:hover {
+            background-color: #e9ecef;
+        }
+        .nav a.active {
+            background-color: #3498db;
+            color: white;
+        }
+        .mermaid {
+            margin: 20px 0;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .description {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        .key-points {
+            margin-top: 20px;
+        }
+        .key-points ul {
+            padding-left: 20px;
+        }
+        .key-points li {
+            margin-bottom: 8px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .feature-card h4 {
+            color: #3498db;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="index.html">首页</a>
+        <a href="flowchart-main.html">总体流程</a>
+        <a href="flowchart-teacher-publish.html">教师发布</a>
+        <a href="flowchart-student-submit.html">学生提交</a>
+        <a href="flowchart-teacher-grade.html">教师批改</a>
+        <a href="flowchart-discussion.html" class="active">讨论区</a>
+    </div>
+
+    <h1>讨论区交流流程图</h1>
+
+    <div class="description">
+        <h3>流程说明</h3>
+        <p>本流程图展示了教师和学生在讨论区进行交流的完整过程，包括浏览帖子、发布新帖、回复等互动环节。</p>
+        <div class="key-points">
+            <h4>关键功能点：</h4>
+            <ul>
+                <li>支持课程和作业相关的主题讨论</li>
+                <li>教师和学生可以自由发帖和回复</li>
+                <li>支持附件上传功能</li>
+                <li>实时更新的帖子列表</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="feature-card">
+            <h4>发帖功能</h4>
+            <p>用户可以创建新的讨论主题，上传相关附件，分享学习心得。</p>
+        </div>
+        <div class="feature-card">
+            <h4>回复互动</h4>
+            <p>支持多层级回复，方便用户进行深入讨论和交流。</p>
+        </div>
+        <div class="feature-card">
+            <h4>主题分类</h4>
+            <p>可以按课程或作业主题进行分类，便于查找相关讨论。</p>
+        </div>
+    </div>
+
+    <div class="mermaid">
+flowchart TD
+    %% 讨论区交流
+    D1[用户（教师/学生）登录系统] --> D2[进入讨论区模块]
+    D2 --> D3[选择课程或作业主题]
+    D3 --> D4[查看已有帖子列表]
+    D4 --> D5{是否新建帖子?}
+    D5 -- 是 --> D6[点击新建帖子]
+    D6 --> D7[填写帖子标题、内容、可选附件]
+    D7 --> D8[提交帖子]
+    D8 --> D9[帖子发布，展示在列表中]
+    D5 -- 否 --> D10[点击某帖进入详情]
+    D10 --> D11[查看帖子内容及评论]
+    D11 --> D12{是否回复此帖?}
+    D12 -- 是 --> D13[填写回复内容]
+    D13 --> D14[提交回复]
+    D14 --> D15[回复发布，更新在该帖下]
+    D12 -- 否 --> D16[返回帖子列表或继续浏览]
+    D16 --> D4
+    D9 --> D4
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>
