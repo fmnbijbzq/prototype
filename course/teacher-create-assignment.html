@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布作业 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- 顶部导航栏 -->
+    <header class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <div class="flex items-center justify-between px-4 h-14">
+            <div class="flex items-center">
+                <button class="p-2 hover:bg-gray-100 rounded-full" onclick="history.back()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <h1 class="ml-2 text-lg font-medium">发布作业</h1>
+            </div>
+            <button class="px-4 py-2 bg-blue-500 text-white rounded-full text-sm font-medium hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                发布
+            </button>
+        </div>
+    </header>
+
+    <!-- 主要内容区域 -->
+    <main class="pt-16 pb-20 px-4">
+        <!-- 作业基本信息 -->
+        <section class="mb-6">
+            <div class="mb-4">
+                <label for="title" class="block text-sm font-medium text-gray-700 mb-1">作业标题</label>
+                <input type="text" id="title" name="title" required
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="请输入作业标题">
+            </div>
+            <div class="mb-4">
+                <label for="description" class="block text-sm font-medium text-gray-700 mb-1">作业说明</label>
+                <textarea id="description" name="description" rows="4"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="请输入作业说明"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="deadline" class="block text-sm font-medium text-gray-700 mb-1">截止日期</label>
+                <input type="datetime-local" id="deadline" name="deadline" required
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+        </section>
+
+        <!-- 题目列表 -->
+        <section class="mb-6">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-medium">题目列表</h2>
+                <button class="flex items-center px-3 py-2 bg-blue-500 text-white rounded-full text-sm font-medium hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                    添加题目
+                </button>
+            </div>
+            
+            <!-- 题目列表（示例题目） -->
+            <div class="space-y-3">
+                <!-- 选择题示例 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                选择题
+                            </span>
+                            <div class="flex items-center space-x-2">
+                                <button class="p-1 hover:bg-gray-100 rounded">
+                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                    </svg>
+                                </button>
+                                <button class="p-1 hover:bg-gray-100 rounded">
+                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-gray-900">在JavaScript中，以下哪个方法用于向数组末尾添加元素？</p>
+                        <div class="mt-3 space-y-2">
+                            <div class="flex items-center">
+                                <input type="radio" name="q1" id="q1_1" class="h-4 w-4 text-blue-600">
+                                <label for="q1_1" class="ml-2 text-sm text-gray-700">push()</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" name="q1" id="q1_2" class="h-4 w-4 text-blue-600">
+                                <label for="q1_2" class="ml-2 text-sm text-gray-700">pop()</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" name="q1" id="q1_3" class="h-4 w-4 text-blue-600">
+                                <label for="q1_3" class="ml-2 text-sm text-gray-700">shift()</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" name="q1" id="q1_4" class="h-4 w-4 text-blue-600">
+                                <label for="q1_4" class="ml-2 text-sm text-gray-700">unshift()</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 填空题示例 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                    <div class="p-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                填空题
+                            </span>
+                            <div class="flex items-center space-x-2">
+                                <button class="p-1 hover:bg-gray-100 rounded">
+                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                    </svg>
+                                </button>
+                                <button class="p-1 hover:bg-gray-100 rounded">
+                                    <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="text-gray-900">JavaScript中声明变量的关键字有：var、_____、const。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 附件上传 -->
+        <section class="mb-6">
+            <h2 class="text-lg font-medium mb-4">附件</h2>
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-6">
+                <div class="text-center">
+                    <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                    </svg>
+                    <div class="mt-4">
+                        <button class="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                            </svg>
+                            选择文件
+                        </button>
+                    </div>
+                    <p class="mt-2 text-sm text-gray-500">支持 PDF、Word、图片等格式</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 发布设置 -->
+        <section class="mb-6">
+            <h2 class="text-lg font-medium mb-4">发布设置</h2>
+            <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+                <div class="mb-4">
+                    <label for="class" class="block text-sm font-medium text-gray-700 mb-1">选择班级</label>
+                    <select id="class" name="class" multiple class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="1">高三一班</option>
+                        <option value="2">高三二班</option>
+                        <option value="3">高三三班</option>
+                    </select>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-sm font-medium text-gray-700">立即发布</span>
+                    <button type="button" class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 bg-gray-200" role="switch" aria-checked="false">
+                        <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部添加题目的抽屉面板 -->
+    <div class="fixed inset-x-0 bottom-0 transform translate-y-full transition-transform duration-300 ease-in-out bg-white rounded-t-xl shadow-lg" id="questionTypeDrawer">
+        <div class="px-4 py-3 border-b border-gray-200">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-medium">选择题目类型</h3>
+                <button class="p-2 hover:bg-gray-100 rounded-full">
+                    <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="p-4">
+            <div class="grid grid-cols-2 gap-4">
+                <button class="flex flex-col items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                    <svg class="w-8 h-8 text-blue-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="text-sm font-medium">选择题</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                    <svg class="w-8 h-8 text-green-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                    </svg>
+                    <span class="text-sm font-medium">填空题</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                    <svg class="w-8 h-8 text-yellow-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    <span class="text-sm font-medium">判断题</span>
+                </button>
+                <button class="flex flex-col items-center justify-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50">
+                    <svg class="w-8 h-8 text-purple-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                    <span class="text-sm font-medium">简答题</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 底部抽屉面板交互
+        document.addEventListener('DOMContentLoaded', function() {
+            const drawer = document.getElementById('questionTypeDrawer');
+            const addQuestionBtn = document.querySelector('button:has(svg[d="M12 4v16m8-8H4"])').parentElement;
+            const closeDrawerBtn = drawer.querySelector('button:has(svg[d="M6 18L18 6M6 6l12 12"])');
+            
+            // 打开抽屉面板
+            addQuestionBtn.addEventListener('click', function() {
+                drawer.classList.remove('translate-y-full');
+            });
+            
+            // 关闭抽屉面板
+            closeDrawerBtn.addEventListener('click', function() {
+                drawer.classList.add('translate-y-full');
+            });
+
+            // 题型选择按钮点击事件
+            const questionTypeButtons = drawer.querySelectorAll('.grid button');
+            questionTypeButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 这里可以添加选择题型后的逻辑
+                    drawer.classList.add('translate-y-full');
+                    // 显示一个简单的提示
+                    alert('选择了' + this.querySelector('span').textContent + '，将进入编辑界面');
+                });
+            });
+
+            // 立即发布开关切换
+            const publishSwitch = document.querySelector('[role="switch"]');
+            publishSwitch.addEventListener('click', function() {
+                const isChecked = this.getAttribute('aria-checked') === 'true';
+                this.setAttribute('aria-checked', !isChecked);
+                if (!isChecked) {
+                    this.classList.remove('bg-gray-200');
+                    this.classList.add('bg-blue-600');
+                    this.querySelector('span').classList.remove('translate-x-0');
+                    this.querySelector('span').classList.add('translate-x-5');
+                } else {
+                    this.classList.remove('bg-blue-600');
+                    this.classList.add('bg-gray-200');
+                    this.querySelector('span').classList.remove('translate-x-5');
+                    this.querySelector('span').classList.add('translate-x-0');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
