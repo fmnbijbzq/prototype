@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>讨论详情 - 在线作业系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .reply-input {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px 15px;
+            z-index: 20;
+        }
+        .tab-active {
+            color: #3182ce;
+            border-bottom: 2px solid #3182ce;
+        }
+        .reply-divider {
+            height: 1px;
+            background-color: #e2e8f0;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="bg-blue-600 text-white p-4 flex items-center">
+        <a href="student-discussion.html" class="mr-4">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <h1 class="text-xl font-bold flex-1">讨论详情</h1>
+        <div class="flex items-center">
+            <button class="mr-4">
+                <i class="fas fa-share-alt"></i>
+            </button>
+            <button>
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto p-4 pb-32">
+        <!-- 帖子详情 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <div class="flex items-center mb-3">
+                <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                <div>
+                    <h3 class="font-medium">李四 <span class="text-xs text-gray-500">· 高等数学</span></h3>
+                    <p class="text-xs text-gray-500">2小时前</p>
+                </div>
+            </div>
+            <h2 class="text-xl font-semibold mb-3">关于高数第三章习题的疑问</h2>
+            <div class="text-gray-700 mb-4">
+                <p class="mb-3">老师，我对第15题有些不理解，特别是关于极限的计算部分。能否详细解释一下这个题目的解题思路？</p>
+                <p class="mb-3">我尝试了几种方法但都没有得到正确答案。教材上的例题和这道题有些不同，我不确定是否可以用相同的方法解决。</p>
+                <p>具体来说，题目要求计算：</p>
+                <div class="bg-gray-100 p-3 rounded-lg my-2 text-center">
+                    lim(x→∞) (1 + 1/x)^x
+                </div>
+                <p>我知道这个极限的结果应该是e，但是我不明白为什么。希望能得到详细的解答步骤。</p>
+            </div>
+            <div class="flex items-center text-sm text-gray-500 border-t pt-3">
+                <button class="flex items-center mr-6">
+                    <i class="far fa-thumbs-up mr-1"></i>
+                    <span>点赞(8)</span>
+                </button>
+                <button class="flex items-center">
+                    <i class="far fa-bookmark mr-1"></i>
+                    <span>收藏</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 回复数量 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <h3 class="font-medium">全部回复 (3)</h3>
+        </div>
+
+        <!-- 回复列表 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <!-- 回复1 -->
+            <div class="mb-3">
+                <div class="flex items-start">
+                    <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                    <div class="flex-1">
+                        <div class="flex justify-between">
+                            <h3 class="font-medium">王老师 <span class="text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">教师</span></h3>
+                            <span class="text-xs text-gray-500">1小时前</span>
+                        </div>
+                        <div class="text-gray-700 mt-2">
+                            <p>李四同学，这是一个经典的极限问题，确实是收敛到自然常数e。</p>
+                            <p class="mt-2">解题思路如下：</p>
+                            <p class="mt-2">1. 首先，我们可以将极限表达式记为y = (1 + 1/x)^x</p>
+                            <p>2. 取对数，ln(y) = x·ln(1 + 1/x)</p>
+                            <p>3. 当x→∞时，1/x→0，我们可以使用泰勒展开：ln(1+t) ≈ t - t²/2 + t³/3 - ... (当t接近0)</p>
+                            <p>4. 代入t=1/x，得到ln(1+1/x) ≈ 1/x - 1/(2x²) + ...</p>
+                            <p>5. 因此，ln(y) ≈ x·(1/x - 1/(2x²) + ...) = 1 - 1/(2x) + ...</p>
+                            <p>6. 当x→∞时，ln(y)→1，所以y→e¹=e</p>
+                        </div>
+                        <div class="flex items-center mt-3 text-sm text-gray-500">
+                            <button class="flex items-center mr-4">
+                                <i class="far fa-thumbs-up mr-1"></i>
+                                <span>12</span>
+                            </button>
+                            <button class="flex items-center">
+                                <i class="far fa-comment mr-1"></i>
+                                <span>回复</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reply-divider"></div>
+
+            <!-- 回复2 -->
+            <div class="mb-3">
+                <div class="flex items-start">
+                    <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                    <div class="flex-1">
+                        <div class="flex justify-between">
+                            <h3 class="font-medium">张三</h3>
+                            <span class="text-xs text-gray-500">45分钟前</span>
+                        </div>
+                        <div class="text-gray-700 mt-2">
+                            <p>我也遇到了同样的问题，王老师的解释很清楚。另外，这个极限在微积分中很重要，它定义了自然常数e。</p>
+                            <p class="mt-2">我们也可以用换元法，令n=x，则原式变为：lim(n→∞) (1 + 1/n)^n，这是e的定义式。</p>
+                        </div>
+                        <div class="flex items-center mt-3 text-sm text-gray-500">
+                            <button class="flex items-center mr-4">
+                                <i class="far fa-thumbs-up mr-1"></i>
+                                <span>5</span>
+                            </button>
+                            <button class="flex items-center">
+                                <i class="far fa-comment mr-1"></i>
+                                <span>回复</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reply-divider"></div>
+
+            <!-- 回复3 -->
+            <div>
+                <div class="flex items-start">
+                    <img src="https://via.placeholder.com/40" alt="头像" class="rounded-full mr-3">
+                    <div class="flex-1">
+                        <div class="flex justify-between">
+                            <h3 class="font-medium">李四 <span class="text-xs bg-green-100 text-green-600 px-2 py-0.5 rounded-full">楼主</span></h3>
+                            <span class="text-xs text-gray-500">30分钟前</span>
+                        </div>
+                        <div class="text-gray-700 mt-2">
+                            <p>谢谢王老师和张三同学的解答！现在我明白了，关键是使用泰勒展开来处理ln(1+1/x)。</p>
+                            <p class="mt-2">我再去尝试一下课后的其他习题，如果还有问题再来请教。</p>
+                        </div>
+                        <div class="flex items-center mt-3 text-sm text-gray-500">
+                            <button class="flex items-center mr-4">
+                                <i class="far fa-thumbs-up mr-1"></i>
+                                <span>3</span>
+                            </button>
+                            <button class="flex items-center">
+                                <i class="far fa-comment mr-1"></i>
+                                <span>回复</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部回复输入框 -->
+    <div class="reply-input flex items-center">
+        <input type="text" placeholder="写下你的回复..." class="flex-1 p-2 border rounded-full mr-3">
+        <button class="bg-blue-600 text-white px-4 py-2 rounded-full">
+            发送
+        </button>
+    </div>
+
+    <!-- 底部导航 -->
+    <nav class="bottom-nav" style="display: none;">
+        <div class="flex justify-around py-2">
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">首页</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-book text-xl"></i>
+                <span class="text-xs mt-1">作业</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-chart-bar text-xl"></i>
+                <span class="text-xs mt-1">成绩</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-blue-500">
+                <i class="fas fa-comments text-xl"></i>
+                <span class="text-xs mt-1">讨论</span>
+            </a>
+            <a href="#" class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">我的</span>
+            </a>
+        </div>
+    </nav>
+</body>
+</html>
