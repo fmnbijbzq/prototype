@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作业详情</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- 顶部导航栏 -->
+    <nav class="bg-blue-600 text-white p-4 flex items-center justify-between fixed top-0 w-full z-10">
+        <div class="flex items-center">
+            <a href="student-assignments.html" class="mr-4">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <h1 class="text-lg font-semibold">作业详情</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+            <a href="student-discussion.html" class="text-white">
+                <i class="fas fa-comments"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <div class="mt-16 mb-24 p-4">
+        <!-- 作业信息卡片 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <h2 class="text-xl font-bold mb-2">第三章 数据结构作业</h2>
+            <div class="text-gray-600 text-sm mb-2">
+                <p><i class="fas fa-book mr-2"></i>数据结构与算法</p>
+                <p><i class="fas fa-clock mr-2"></i>截止时间：2024-01-20 23:59</p>
+                <p class="text-red-500"><i class="fas fa-hourglass-half mr-2"></i>剩余时间：2天3小时</p>
+            </div>
+            <div class="border-t pt-2">
+                <p class="text-gray-700">本次作业主要考察二叉树的基本概念和相关算法的理解。请认真完成每道题目，注意题目要求和答题规范。</p>
+            </div>
+        </div>
+
+        <!-- 附件下载区域 -->
+        <div class="bg-white rounded-lg shadow-md p-4 mb-4">
+            <h3 class="font-semibold mb-2">附件材料</h3>
+            <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                <div class="flex items-center">
+                    <i class="fas fa-file-pdf text-red-500 mr-2"></i>
+                    <span>二叉树练习题.pdf</span>
+                </div>
+                <button class="text-blue-600">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- 题目列表 -->
+        <div class="space-y-4">
+            <!-- 选择题 -->
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold">1. 选择题 (10分)</h3>
+                    <span class="text-sm text-gray-500">单选题</span>
+                </div>
+                <p class="mb-3">完全二叉树的第4层最多可以有多少个节点？</p>
+                <div class="space-y-2">
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="q1" class="form-radio text-blue-600">
+                        <span>A. 8个节点</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="q1" class="form-radio text-blue-600">
+                        <span>B. 16个节点</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="q1" class="form-radio text-blue-600">
+                        <span>C. 4个节点</span>
+                    </label>
+                    <label class="flex items-center space-x-2">
+                        <input type="radio" name="q1" class="form-radio text-blue-600">
+                        <span>D. 32个节点</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 填空题 -->
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold">2. 填空题 (5分)</h3>
+                    <span class="text-sm text-gray-500">填空题</span>
+                </div>
+                <p class="mb-3">二叉树的前序遍历顺序是：根节点→(   )→右子树</p>
+                <input type="text" class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="请填写答案">
+            </div>
+
+            <!-- 判断题 -->
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold">3. 判断题 (5分)</h3>
+                    <span class="text-sm text-gray-500">判断题</span>
+                </div>
+                <p class="mb-3">在二叉树中，度为1的节点一定有左孩子。</p>
+                <div class="space-x-4">
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="q3" class="form-radio text-blue-600">
+                        <span class="ml-2">正确</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" name="q3" class="form-radio text-blue-600">
+                        <span class="ml-2">错误</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 简答题 -->
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold">4. 简答题 (20分)</h3>
+                    <span class="text-sm text-gray-500">简答题</span>
+                </div>
+                <p class="mb-3">请解释二叉搜索树的特点，并描述如何在二叉搜索树中查找一个值为x的节点。</p>
+                <textarea class="w-full p-2 border rounded h-32 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="请输入你的答案"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部固定按钮 -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t p-4 flex justify-between items-center">
+        <button class="px-6 py-2 bg-gray-500 text-white rounded-lg flex items-center">
+            <i class="fas fa-save mr-2"></i>
+            保存草稿
+        </button>
+        <button class="px-6 py-2 bg-blue-600 text-white rounded-lg flex items-center">
+            <i class="fas fa-paper-plane mr-2"></i>
+            提交作业
+        </button>
+    </div>
+</body>
+</html>
